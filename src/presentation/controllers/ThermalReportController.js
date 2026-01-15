@@ -27,7 +27,8 @@ class ThermalReportController {
             if (!Array.isArray(recommendations)) recommendations = [recommendations];
 
             const reportTitle = req.body.reportTitle || "BÁO CÁO KẾT QUẢ KIỂM TRA NHIỆT";
-            const result = await this.generateThermalReportUseCase.execute(req.files, remarks, conclusions, recommendations, tempDir, reportTitle);
+            const deviceType = req.body.deviceType || "solar_panel";
+            const result = await this.generateThermalReportUseCase.execute(req.files, remarks, conclusions, recommendations, tempDir, reportTitle, deviceType);
 
             res.download(result.reportPath, 'Testo_Thermal_Report.pdf', (err) => {
                 if (err) console.error("Error sending file:", err);

@@ -7,7 +7,7 @@ class GenerateThermalReport {
         this.reportService = reportService;
     }
 
-    async execute(files, remarks, conclusions, recommendations, tempDir, reportTitle) {
+    async execute(files, remarks, conclusions, recommendations, tempDir, reportTitle, deviceType = "solar_panel") {
         const thermalImages = [];
 
         for (let i = 0; i < files.length; i++) {
@@ -24,15 +24,68 @@ class GenerateThermalReport {
                 thermalImage.conclusion = conclusion;
                 thermalImage.recommendation = recommendation;
 
-                // Calculate Severity
+                // Calculate Severity based on Device Type
+                let warningThreshold = 45;
+                let criticalThreshold = 65;
+
+                switch (deviceType) {
+                    case 'inverter':
+                        warningThreshold = 60;
+                        criticalThreshold = 80;
+                        break;
+                    case 'cable':
+                        warningThreshold = 70;
+                        criticalThreshold = 90;
+                        break;
+                    case 'solar_panel':
+                    default:
+                        warningThreshold = 45;
+                        criticalThreshold = 65;
+                        break;
+                }
+
                 const maxTemp = parseFloat(thermalImage.maxTemp);
                 if (!isNaN(maxTemp)) {
-                    if (maxTemp > 70) {
+                    if (maxTemp >= criticalThreshold) {
                         thermalImage.severity = "Critical";
-                    } else if (maxTemp >= 50) {
+                    } else if (maxTemp >= warningThreshold) {
                         thermalImage.severity = "Warning";
                     } else {
                         thermalImage.severity = "Normal";
+                    }
+
+                    // Auto-generate Conclusion & Recommendation if empty
+                    if (!thermalImage.conclusion) {
+                        switch (thermalImage.severity) {
+                            case "Normal":
+                                thermalImage.conclusion = "Hệ thống hoạt động bình thường. Nhiệt độ nằm trong giới hạn cho phép.";
+                                if (deviceType === 'cable') thermalImage.conclusion = "Điểm đấu nối có nhiệt độ bình thường.";
+                                break;
+                            case "Warning":
+                                thermalImage.conclusion = "Phát hiện tăng nhiệt cục bộ. Có thể do lỗi tiếp xúc, quá tải nhẹ hoặc bóng che.";
+                                if (deviceType === 'solar_panel') thermalImage.conclusion = "Phát hiện tăng nhiệt bất thường. Có thể do bụi bẩn, bóng che hoặc lỗi nhẹ.";
+                                break;
+                            case "Critical":
+                                thermalImage.conclusion = "Phát hiện lỗi quá nhiệt nghiêm trọng. Nguy cơ hư hỏng thiết bị hoặc cháy nổ.";
+                                if (deviceType === 'solar_panel') thermalImage.conclusion = "Phát hiện lỗi Hotspot nghiêm trọng trên tấm pin.";
+                                break;
+                        }
+                    }
+
+                    if (!thermalImage.recommendation) {
+                        switch (thermalImage.severity) {
+                            case "Normal":
+                                thermalImage.recommendation = "Tiếp tục theo dõi định kỳ.";
+                                break;
+                            case "Warning":
+                                thermalImage.recommendation = "Kiểm tra vệ sinh bề mặt, siết lại điểm đấu nối và theo dõi trong lần kiểm tra tới.";
+                                if (deviceType === 'solar_panel') thermalImage.recommendation = "Vệ sinh tấm pin, kiểm tra vật cản và theo dõi thêm.";
+                                break;
+                            case "Critical":
+                                thermalImage.recommendation = "Cần kiểm tra kỹ thuật ngay lập tức! Đo dòng điện, kiểm tra lực siết hoặc thay thế.";
+                                if (deviceType === 'solar_panel') thermalImage.recommendation = "Kiểm tra kỹ thuật tại hiện trường, đo đạc lại và cân nhắc thay thế tấm pin.";
+                                break;
+                        }
                     }
                 }
 

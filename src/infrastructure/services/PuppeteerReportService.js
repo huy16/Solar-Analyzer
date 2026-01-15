@@ -15,9 +15,7 @@ class PuppeteerReportService extends IReportService {
                     '--disable-setuid-sandbox',
                     '--disable-dev-shm-usage',
                     '--disable-gpu',
-                    '--no-first-run',
-                    '--no-zygote',
-                    '--single-process' // Sometimes helps in strict containers, re-adding safely
+                    '--no-first-run'
                 ]
             });
         } catch (err) {
@@ -117,22 +115,44 @@ class PuppeteerReportService extends IReportService {
             // Generate synthetic histogram SVG
             const min = parseFloat(item.minTemp) || 20;
             const max = parseFloat(item.maxTemp) || 40;
-            const avg = parseFloat(item.avgTemp) || (min + max) / 2;
+            const avg = parseFloat(item.centerTemp) || (min + max) / 2; // Fixed: item.avgTemp -> item.centerTemp
             const range = max - min;
 
-            // Create 40 bars for histogram (shifted towards higher temps to simulate typical thermal distribution)
+            // Create bars for histogram
             let barsHtml = '';
 
-            for (let i = 0; i < 40; i++) {
-                const barX = (i / 40) * 100;
-                const barW = 100 / 42;
-                const pos = i / 40;
-                // Peak shifted to ~70% (higher temp range typical in thermal images)
-                const dist = Math.exp(-Math.pow((pos - 0.7) * 3.5, 2));
-                const hPct = 5 + (dist * 90) + (Math.random() * 5); // height as percentage of max
-                const barY = 100 - hPct; // bars grow from bottom
-                const color = `hsl(${240 - (pos * 240)}, 100%, 50%)`; // Blue to Red
-                barsHtml += `<rect x="${barX}" y="${barY}" width="${barW}" height="${hPct}" fill="${color}" />`;
+            if (item.histogram && item.histogram.length > 0) {
+                // Use REAL histogram data
+                const maxBinVal = Math.max(...item.histogram);
+                // Scale tallest bar to 95% height for better visibility
+                const scaleFactor = maxBinVal > 0 ? 95 / maxBinVal : 1;
+
+                for (let i = 0; i < item.histogram.length; i++) {
+                    const barX = (i / item.histogram.length) * 100;
+                    const barW = 100 / (item.histogram.length + 2);
+                    const hPct = item.histogram[i] * scaleFactor;
+                    const barY = 100 - hPct;
+
+                    // Color gradient based on position (Cold to Hot)
+                    const pos = i / item.histogram.length;
+                    const color = `hsl(${240 - (pos * 240)}, 100%, 50%)`;
+
+                    if (hPct > 0) {
+                        barsHtml += `<rect x="${barX}%" y="${barY}%" width="${barW}%" height="${hPct}%" fill="${color}" />`;
+                    }
+                }
+            } else {
+                // Fallback: Synthetic histogram if no data
+                for (let i = 0; i < 40; i++) {
+                    const barX = (i / 40) * 100;
+                    const barW = 100 / 42;
+                    const pos = i / 40;
+                    const dist = Math.exp(-Math.pow((pos - 0.7) * 3.5, 2));
+                    const hPct = 5 + (dist * 90) + (Math.random() * 5);
+                    const barY = 100 - hPct;
+                    const color = `hsl(${240 - (pos * 240)}, 100%, 50%)`;
+                    barsHtml += `<rect x="${barX}%" y="${barY}%" width="${barW}%" height="${hPct}%" fill="${color}" />`;
+                }
             }
 
             htmlContent += `
@@ -196,7 +216,7 @@ class PuppeteerReportService extends IReportService {
                 <div class="section-title">Thông số hình ảnh / Picture parameters:</div>
                 <div class="params-grid">
                    <div class="param-row"><div class="param-label">Độ phát xạ / Emissivity:</div> <div>${item.emissivity}</div> <div></div></div>
-                   <div class="param-row"><div class="param-label">Nhiệt độ phản chiếu / Refl. temp. [°C]:</div> <div>${item.reflTemp}</div> <div></div></div>
+                   <div class="param-row"><div class="param-label">Nhiệt độ phản chiếu / Refl. temp. [°C]:</div> <div>${item.reflectedTemp}</div> <div></div></div>
                    <div class="param-row"><div class="param-label">Cường độ ánh sáng / Intensity [W/m2]:</div> <div>500</div> <div></div></div>
                 </div>
 
@@ -215,22 +235,22 @@ class PuppeteerReportService extends IReportService {
                             <td class="left">HS1 - Nhiệt độ cao nhất / Hottest Spot</td>
                             <td>${item.maxTemp}</td>
                             <td>${item.emissivity}</td>
-                            <td>${item.reflTemp}</td>
-                            <td><span class="status-badge status-${parseFloat(item.maxTemp) > 70 ? 'critical' : parseFloat(item.maxTemp) >= 50 ? 'warning' : 'normal'}">${parseFloat(item.maxTemp) > 70 ? 'CRITICAL' : parseFloat(item.maxTemp) >= 50 ? 'WARNING' : 'NORMAL'}</span></td>
+                            <td>${item.reflectedTemp}</td>
+                            <td><span class="status-badge status-${parseFloat(item.maxTemp) >= 65 ? 'critical' : parseFloat(item.maxTemp) >= 45 ? 'warning' : 'normal'}">${parseFloat(item.maxTemp) >= 65 ? 'CRITICAL' : parseFloat(item.maxTemp) >= 45 ? 'WARNING' : 'NORMAL'}</span></td>
                         </tr>
                         <tr>
                             <td class="left">CS1 - Nhiệt độ thấp nhất / Coldest Spot</td>
                             <td>${item.minTemp}</td>
                             <td>${item.emissivity}</td>
-                            <td>${item.reflTemp}</td>
-                            <td><span class="status-badge status-${parseFloat(item.minTemp) > 70 ? 'critical' : parseFloat(item.minTemp) >= 50 ? 'warning' : 'normal'}">${parseFloat(item.minTemp) > 70 ? 'CRITICAL' : parseFloat(item.minTemp) >= 50 ? 'WARNING' : 'NORMAL'}</span></td>
+                            <td>${item.reflectedTemp}</td>
+                            <td><span class="status-badge status-${parseFloat(item.minTemp) >= 65 ? 'critical' : parseFloat(item.minTemp) >= 45 ? 'warning' : 'normal'}">${parseFloat(item.minTemp) >= 65 ? 'CRITICAL' : parseFloat(item.minTemp) >= 45 ? 'WARNING' : 'NORMAL'}</span></td>
                         </tr>
                         <tr>
                             <td class="left">M1 - Nhiệt độ trung bình / Center Spot</td>
-                            <td>${item.avgTemp}</td>
+                            <td>${item.centerTemp}</td>
                             <td>${item.emissivity}</td>
-                            <td>${item.reflTemp}</td>
-                            <td><span class="status-badge status-${parseFloat(item.avgTemp) > 70 ? 'critical' : parseFloat(item.avgTemp) >= 50 ? 'warning' : 'normal'}">${parseFloat(item.avgTemp) > 70 ? 'CRITICAL' : parseFloat(item.avgTemp) >= 50 ? 'WARNING' : 'NORMAL'}</span></td>
+                            <td>${item.reflectedTemp}</td>
+                            <td><span class="status-badge status-${parseFloat(item.centerTemp) >= 65 ? 'critical' : parseFloat(item.centerTemp) >= 45 ? 'warning' : 'normal'}">${parseFloat(item.centerTemp) >= 65 ? 'CRITICAL' : parseFloat(item.centerTemp) >= 45 ? 'WARNING' : 'NORMAL'}</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -257,12 +277,11 @@ class PuppeteerReportService extends IReportService {
                 </div>
 
                 <div class="section-title">Kết luận / Result:</div>
-                <p style="margin: 0 0 10px 0;">Nhiệt độ đảm bảo điều kiện vận hành.</p>
+                <p style="margin: 0 0 10px 0;">${item.conclusion}</p>
                 <hr style="border: none; border-top: 2px solid #000; margin: 10px 0;">
-                <p style="margin: 0;">The temperature is guaranteed for operating conditions.</p>
                 
                 <div class="section-title">Đề xuất / Recommendation:</div>
-                <p style="margin: 0;">Tiếp tục theo dõi / Continue monitoring.</p>
+                <p style="margin: 0;">${item.recommendation}</p>
             </div>
             `;
         }

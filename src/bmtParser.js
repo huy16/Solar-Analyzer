@@ -133,80 +133,69 @@ function parseBmt(filePath, outputImagePath) {
             } else if (name === "ReflectedTemperature") {
                 const k = buffer.readFloatLE(valueOffset);
                 metadata.reflectedTemp = k - 273.15;
+            } else if (name === "Ir") {
+                const valueOffset = dataStart + currentOffset;
+                // Header skip (24 bytes for 240x180, or dependent on Type)
+                const dataPayloadStart = valueOffset + 24;
+                const pixelCount = (size - 24) / 2;
+
+                let minVal = 65535;
+                let maxVal = -65535;
+                const rawValues = new Int16Array(pixelCount);
+
+                for (let i = 0; i < pixelCount; i++) {
+                    const val = buffer.readInt16LE(dataPayloadStart + i * 2);
+                    rawValues[i] = val;
+                    if (val < minVal) minVal = val;
+                    if (val > maxVal) maxVal = val;
+                }
+
+                metadata.rawStats = { minVal, maxVal, rawValues };
             }
 
             currentOffset += size;
         }
 
-    } else if (name === "Ir") {
-        const valueOffset = dataStart + currentOffset;
-        // Header skip (24 bytes for 240x180, or dependent on Type)
-        const dataPayloadStart = valueOffset + 24;
-        const pixelCount = (size - 24) / 2;
+        // Post-process: Compute Histogram if we have Raw Data & Temp Range
+        if (metadata.rawStats && metadata.tempMin !== null && metadata.tempMax !== null) {
+            const rawRange = metadata.rawStats.maxVal - metadata.rawStats.minVal;
+            const tempRange = metadata.tempMax - metadata.tempMin;
 
-        // We need TempMin/TempMax to calibrate. 
-        // Since they might be found AFTER this Ir block, we need to defer calculation?
-        // Or we can assume we parse the whole file first, then compute?
-        // The current loop parses line by line.
-        // Better approach: Store raw data stats, then at end of loop compute histogram.
+            // Avoid division by zero
+            if (rawRange > 0 && tempRange > 0) {
+                const bins = new Array(40).fill(0);
+                // Bin size in Raw Units
+                const rawBinSize = rawRange / 40;
 
-        let minVal = 65535;
-        let maxVal = -65535;
-        const rawValues = new Int16Array(pixelCount);
+                for (let i = 0; i < metadata.rawStats.rawValues.length; i++) {
+                    const val = metadata.rawStats.rawValues[i];
+                    // Map to 0-39
+                    let binIdx = Math.floor((val - metadata.rawStats.minVal) / rawBinSize);
+                    if (binIdx >= 40) binIdx = 39;
+                    if (binIdx < 0) binIdx = 0;
+                    bins[binIdx]++;
+                }
 
-        for (let i = 0; i < pixelCount; i++) {
-            const val = buffer.readInt16LE(dataPayloadStart + i * 2);
-            rawValues[i] = val;
-            if (val < minVal) minVal = val;
-            if (val > maxVal) maxVal = val;
+                // Store Histogram (Counts + Normalized %)
+                // Also store the exact bin temp ranges?
+                // For simplified display, we just need the counts.
+                const total = metadata.rawStats.rawValues.length;
+                const histogramPercentage = bins.map(count => (count / total) * 100);
+
+                // Also smooth it? Or raw? Testo usually shows raw.
+                metadata.histogram = histogramPercentage;
+            }
         }
 
-        metadata.rawStats = { minVal, maxVal, rawValues };
-    }
+        // Clean up large array
+        if (metadata.rawStats) delete metadata.rawStats.rawValues;
 
-    currentOffset += size;
-}
-
-// Post-process: Compute Histogram if we have Raw Data & Temp Range
-if (metadata.rawStats && metadata.tempMin !== null && metadata.tempMax !== null) {
-    const rawRange = metadata.rawStats.maxVal - metadata.rawStats.minVal;
-    const tempRange = metadata.tempMax - metadata.tempMin;
-
-    // Avoid division by zero
-    if (rawRange > 0 && tempRange > 0) {
-        const bins = new Array(40).fill(0);
-        // Bin size in Raw Units
-        const rawBinSize = rawRange / 40;
-
-        for (let i = 0; i < metadata.rawStats.rawValues.length; i++) {
-            const val = metadata.rawStats.rawValues[i];
-            // Map to 0-39
-            let binIdx = Math.floor((val - metadata.rawStats.minVal) / rawBinSize);
-            if (binIdx >= 40) binIdx = 39;
-            if (binIdx < 0) binIdx = 0;
-            bins[binIdx]++;
-        }
-
-        // Store Histogram (Counts + Normalized %)
-        // Also store the exact bin temp ranges?
-        // For simplified display, we just need the counts.
-        const total = metadata.rawStats.rawValues.length;
-        const histogramPercentage = bins.map(count => (count / total) * 100);
-
-        // Also smooth it? Or raw? Testo usually shows raw.
-        metadata.histogram = histogramPercentage;
-    }
-}
-
-// Clean up large array
-if (metadata.rawStats) delete metadata.rawStats.rawValues;
-
-return { success: true, metadata };
+        return { success: true, metadata };
 
     } catch (e) {
-    console.error(`Error parsing BMT ${filePath}:`, e.message);
-    return { success: false, error: e.message };
-}
+        console.error(`Error parsing BMT ${filePath}:`, e.message);
+        return { success: false, error: e.message };
+    }
 }
 
 module.exports = { parseBmt };

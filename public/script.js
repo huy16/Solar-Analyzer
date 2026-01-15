@@ -1,6 +1,7 @@
 const dropArea = document.getElementById('drop-area');
 const statusDiv = document.getElementById('status');
 const fileListDiv = document.getElementById('file-list');
+const fileCountDiv = document.getElementById('file-count');
 const fileInput = document.getElementById('fileElem');
 const uploadBtn = document.getElementById('uploadBtn');
 
@@ -42,16 +43,17 @@ if (fileInput) {
 function handleFiles(files) {
     if (files.length > 0) {
         fileListDiv.innerHTML = ''; // Clear previous list
+        fileCountDiv.textContent = `Total files: ${files.length}`;
 
         // Populate inputs
         Array.from(files).forEach((file, index) => {
             const fileItem = document.createElement('div');
             fileItem.className = 'file-item';
             fileItem.innerHTML = `
-                <div style="font-weight:bold; margin-bottom:5px;">${file.name}</div>
-                <div style="color: green; font-size: 0.9em; display: flex; align-items: center;">
-                    <span style="margin-right: 5px;">✅</span> Ready to upload
-                </div>
+                <span class="file-name">${file.name}</span>
+                <span class="file-status">
+                    ✅ Ready
+                </span>
             `;
             fileListDiv.appendChild(fileItem);
         });
@@ -88,7 +90,9 @@ async function uploadFiles() {
 
     const formData = new FormData();
     const reportTitle = document.getElementById('reportTitle').value;
+    const deviceType = document.getElementById('deviceType').value;
     formData.append('reportTitle', reportTitle);
+    formData.append('deviceType', deviceType);
 
     // Note: 'files' object might not match DOM inputs order if not careful, but usually it does.
     Array.from(files).forEach((file, index) => {
