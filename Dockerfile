@@ -15,22 +15,24 @@ RUN apt-get update \
 # Set working directory
 WORKDIR /usr/src/app
 
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies (let puppeteer download chrome into .cache)
-# DO NOT SKIP DOWNLOAD HERE
-RUN npm install
-
-# Copy source code
-COPY . .
-
-# Create temp directories with permissions
-RUN mkdir -p temp_processing uploads \
-    && chown -R node:node temp_processing uploads
+# Change ownership of the app directory to the node user
+RUN chown -R node:node /usr/src/app
 
 # Switch to non-root user
 USER node
+
+# Copy package files with correct ownership
+COPY --chown=node:node package*.json ./
+
+# Install dependencies (let puppeteer download chrome into /home/node/.cache)
+RUN npm install
+
+# Copy source code with correct ownership
+COPY --chown=node:node . .
+
+# Create temp directories (already owned by node due to WORKDIR ownership inheritance or explicit chown if not)
+# But explicit chown is safer if mkdir makes it root
+RUN mkdir -p temp_processing uploads
 
 # Expose port
 ENV PORT=3000
