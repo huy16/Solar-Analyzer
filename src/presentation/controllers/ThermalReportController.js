@@ -41,7 +41,8 @@ class ThermalReportController {
 
         } catch (error) {
             console.error("Controller Error:", error);
-            res.status(500).send('Error generating report.');
+            // Send detailed error to client for debugging
+            res.status(500).send(`Error generating report: ${error.message}\n\nStack: ${error.stack}`);
         }
     }
 }
