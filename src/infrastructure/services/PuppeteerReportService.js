@@ -9,10 +9,15 @@ class PuppeteerReportService extends IReportService {
         try {
             browser = await puppeteer.launch({
                 headless: "new",
+                timeout: 60000, // Increase timeout to 60s for slow containers
                 args: [
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
-                    '--disable-dev-shm-usage'
+                    '--disable-dev-shm-usage',
+                    '--disable-gpu',
+                    '--no-first-run',
+                    '--no-zygote',
+                    '--single-process' // Sometimes helps in strict containers, re-adding safely
                 ]
             });
         } catch (err) {
