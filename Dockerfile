@@ -8,8 +8,8 @@ WORKDIR /usr/src/app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies (ignoring scripts to avoid downloading chrome again)
-RUN npm ci --ignore-scripts
+# Install dependencies
+RUN npm install
 
 # Copy source code
 COPY . .
