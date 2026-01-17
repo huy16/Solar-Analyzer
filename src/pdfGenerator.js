@@ -73,6 +73,22 @@ async function generatePdfReport(dataList, outputPath) {
             barsHtml += `<rect x="${x}%" y="${100 - h}%" width="2%" height="${h}%" fill="${color}" />`;
         }
 
+        let remarksStyle = '';
+        const severity = item.severity || 'Normal';
+
+        switch (severity) {
+            case 'Critical':
+                remarksStyle = 'background-color: #fee2e2; color: #991b1b; font-weight: bold;';
+                break;
+            case 'Warning':
+                remarksStyle = 'background-color: #ffedd5; color: #9a3412; font-weight: bold;';
+                break;
+            case 'Normal':
+            default:
+                remarksStyle = 'background-color: #d1fae5; color: #065f46; font-weight: bold;';
+                break;
+        }
+
         htmlContent += `
         <div class="report-page ${index < dataList.length - 1 ? 'page-break' : ''}">
             <div class="header-container">
@@ -140,7 +156,7 @@ async function generatePdfReport(dataList, outputPath) {
                         <td>${item.centerTemp}</td>
                         <td>${item.emissivity}</td>
                         <td>${item.reflectedTemp}</td>
-                        <td class="left">CenterSpot</td>
+                        <td class="left" style="${remarksStyle}">${severity}</td>
                     </tr>
                     <tr>
                         <td class="left">Cold spot 1</td>
@@ -173,7 +189,7 @@ async function generatePdfReport(dataList, outputPath) {
                      
                      <!-- X Axis Labels (Simulated) -->
                      <text x="0" y="95%" font-size="10" fill="#555">${(min).toFixed(1)}</text>
-                     <text x="50%" y="95%" font-size="10" fill="#555">${avg.toFixed(1)}</text>
+                     <!-- Removed middle value as requested -->
                      <text x="95%" y="95%" font-size="10" fill="#555" text-anchor="end">${(max).toFixed(1)}</text>
                  </svg>
             </div>

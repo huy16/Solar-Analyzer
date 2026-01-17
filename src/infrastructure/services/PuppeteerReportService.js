@@ -90,6 +90,13 @@ class PuppeteerReportService extends IReportService {
                 .status-normal { background-color: #28a745; }
                 .status-warning { background-color: #ffc107; color: #333; }
                 .status-critical { background-color: #dc3545; }
+
+                /* Result Box Styling */
+                .result-box { padding: 8px; border-radius: 5px; margin-bottom: 10px; border: 1px solid transparent; }
+                .result-normal { background-color: #d1fae5; color: #065f46; border-color: #34d399; }
+                .result-warning { background-color: #ffedd5; color: #9a3412; border-color: #fdba74; }
+                .result-critical { background-color: #fee2e2; color: #991b1b; border-color: #f87171; }
+                .result-title { font-weight: bold; margin-bottom: 4px; text-decoration: underline; }
                 
                 .chart-container { width: 100%; height: 120px; border: 1px solid #eee; position: relative; margin-top: 5px; padding-top: 5px; }
                 .chart-stats { text-align: right; font-size: 10px; margin-bottom: 10px; color: #333; font-weight: bold; }
@@ -111,6 +118,9 @@ class PuppeteerReportService extends IReportService {
             if (item.realImagePath && fs.existsSync(item.realImagePath)) {
                 realImgBase64 = fs.readFileSync(item.realImagePath).toString('base64');
             }
+
+            const severity = item.severity || 'Normal';
+            const severityClass = severity.toLowerCase(); // 'normal', 'warning', 'critical'
 
             // Generate synthetic histogram SVG
             const min = parseFloat(item.minTemp) || 20;
@@ -236,7 +246,7 @@ class PuppeteerReportService extends IReportService {
                             <td>${item.maxTemp}</td>
                             <td>${item.emissivity}</td>
                             <td>${item.reflectedTemp}</td>
-                            <td><span class="status-badge status-${parseFloat(item.maxTemp) >= 65 ? 'critical' : parseFloat(item.maxTemp) >= 45 ? 'warning' : 'normal'}">${parseFloat(item.maxTemp) >= 65 ? 'CRITICAL' : parseFloat(item.maxTemp) >= 45 ? 'WARNING' : 'NORMAL'}</span></td>
+                            <td><span class="status-badge status-${severityClass}">${severity.toUpperCase()}</span></td>
                         </tr>
                         <tr>
                             <td class="left">CS1 - Nhiệt độ thấp nhất / Coldest Spot</td>
@@ -272,13 +282,15 @@ class PuppeteerReportService extends IReportService {
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 10px; color: #555; padding: 2px 0;">
                     <span>${min.toFixed(1)} °C</span>
-                    <span>${avg.toFixed(1)} °C</span>
+                    <!-- Middle value removed -->
+                    <span style="visibility: hidden;">${avg.toFixed(1)} °C</span> 
                     <span>${max.toFixed(1)} °C</span>
                 </div>
 
-                <div class="section-title">Kết luận / Result:</div>
-                <p style="margin: 0 0 10px 0;">${item.conclusion}</p>
-                <hr style="border: none; border-top: 2px solid #000; margin: 10px 0;">
+                <div class="result-box result-${severityClass}">
+                    <div class="result-title">Kết luận / Result:</div>
+                    <p style="margin: 0;">${item.conclusion}</p>
+                </div>
                 
                 <div class="section-title">Đề xuất / Recommendation:</div>
                 <p style="margin: 0;">${item.recommendation}</p>
