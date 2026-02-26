@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 class ThermalReportController {
     constructor(generateThermalReportUseCase) {
@@ -11,12 +12,10 @@ class ThermalReportController {
             return res.status(400).send('No files uploaded.');
         }
 
-        const tempDir = 'temp_processing';
-        if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
+        const tempDir = path.join(os.tmpdir(), 'testo_processing');
+        if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
 
         try {
-            // remarks will be an array corresponding to files, or undefined
-            // Multer text fields come in req.body. If multiple inputs have same name 'remarks', it's an array.
             let remarks = req.body.remarks || [];
             if (!Array.isArray(remarks)) remarks = [remarks];
 
@@ -27,7 +26,7 @@ class ThermalReportController {
             if (!Array.isArray(recommendations)) recommendations = [recommendations];
 
             const reportTitle = req.body.reportTitle || "BÁO CÁO KẾT QUẢ KIỂM TRA NHIỆT";
-            const deviceType = req.body.deviceType || "solar_panel";
+            const deviceType = req.body.deviceType || "device"; // Default to generic if missing
             const result = await this.generateThermalReportUseCase.execute(req.files, remarks, conclusions, recommendations, tempDir, reportTitle, deviceType);
 
             res.download(result.reportPath, 'Testo_Thermal_Report.pdf', (err) => {
@@ -42,7 +41,6 @@ class ThermalReportController {
 
         } catch (error) {
             console.error("Controller Error:", error);
-            // Send detailed error to client for debugging
             res.status(500).send(`Error generating report: ${error.message}\n\nStack: ${error.stack}`);
         }
     }

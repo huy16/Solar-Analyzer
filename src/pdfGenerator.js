@@ -93,15 +93,11 @@ async function generatePdfReport(dataList, outputPath) {
         <div class="report-page ${index < dataList.length - 1 ? 'page-break' : ''}">
             <div class="header-container">
                 <div class="logo-section">
-                    <div class="logo-text">CAS</div>
-                    <div class="logo-sub">AUTOMATE YOUR BUSINESS & FREE YOUR MIND</div>
+                    <div class="logo-text"></div>
+                    <div class="logo-sub"></div>
                 </div>
                 <div class="company-info">
-                    <strong>CONTROL & AUTOMATION SOLUTIONS CO.,LTD.</strong><br>
-                    <em>Automate Your Business & Free Your Mind</em><br>
-                    Factory: Lot C3, Road No.2, Hoa Cam Industrial Zone, Danang, Vietnam<br>
-                    Office: 8th Floor, Petrolimex Building, 122 September 2nd Street, Danang, Vietnam<br>
-                    Phone: (+84) 236 3675 666 Fax: (+84) 236 3675 777 Website: www.cas-energy.com
+                    <!-- Company info removed -->
                 </div>
             </div>
 
