@@ -60,10 +60,9 @@ class PuppeteerReportService extends IReportService {
         } catch (e) {}
 
         const styles = `
-            @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
             @page { size: A4; margin: 0; }
             * { box-sizing: border-box; }
-            body { font-family: 'Noto Serif', 'Times New Roman', 'Liberation Serif', Times, serif; padding: 0; margin: 0; color: #000; font-size: 10pt; line-height: 1.3; }
+            body { font-family: 'Times New Roman', 'Liberation Serif', Times, serif; padding: 0; margin: 0; color: #000; font-size: 10pt; line-height: 1.3; }
             
             .report-page { 
                 position: relative; 
