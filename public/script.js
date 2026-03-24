@@ -221,8 +221,11 @@ function getNestedValue(obj, path) {
 function setNestedValue(obj, path, value) {
     const parts = path.split('.');
     const last = parts.pop();
-    const target = parts.reduce((acc, part) => {
-        if (!acc[part]) acc[part] = {};
+    const target = parts.reduce((acc, part, index) => {
+        if (!acc[part]) {
+            const nextPart = parts[index + 1] || last;
+            acc[part] = !isNaN(Number(nextPart)) ? [] : {};
+        }
         return acc[part];
     }, obj);
     target[last] = value;
