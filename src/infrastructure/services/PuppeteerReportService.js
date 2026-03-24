@@ -4,6 +4,7 @@ const path = require('path');
 const IReportService = require('../../domain/repositories/IReportService');
 const DeviceClassifier = require('../../domain/services/DeviceClassifier');
 const { OM_REPORT_DEFAULT_DATA } = require('../../domain/constants/omReportTemplateData');
+const notoserifBase64CSS = require('./fonts');
 
 class PuppeteerReportService extends IReportService {
     async generate(dataList, outputPath, reportTitle = "BÁO CÁO KẾT QUẢ KIỂM TRA NHIỆT") {
@@ -58,9 +59,10 @@ class PuppeteerReportService extends IReportService {
         } catch (e) {}
 
         const styles = `
+            ${notoserifBase64CSS}
             @page { size: A4; margin: 0; }
             * { box-sizing: border-box; }
-            body { font-family: 'Times New Roman', 'Liberation Serif', Times, serif; padding: 0; margin: 0; color: #000; font-size: 10pt; line-height: 1.3; }
+            body { font-family: 'Noto Serif', 'Times New Roman', 'Liberation Serif', Times, serif; padding: 0; margin: 0; color: #000; font-size: 10pt; line-height: 1.3; }
             
             .report-page { 
                 position: relative; 
