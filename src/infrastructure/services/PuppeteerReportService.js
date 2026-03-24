@@ -53,9 +53,10 @@ class PuppeteerReportService extends IReportService {
         } catch (e) {}
 
         const styles = `
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
             @page { size: A4; margin: 0; }
             * { box-sizing: border-box; }
-            body { font-family: 'Times New Roman', Times, serif; padding: 0; margin: 0; color: #000; font-size: 10pt; line-height: 1.3; }
+            body { font-family: 'Noto Serif', 'Times New Roman', 'Liberation Serif', Times, serif; padding: 0; margin: 0; color: #000; font-size: 10pt; line-height: 1.3; }
             
             .report-page { 
                 position: relative; 
@@ -146,7 +147,7 @@ class PuppeteerReportService extends IReportService {
                 <tr><td class="info-label">Đơn vị thực hiện<br/><span class="info-sublabel">Inspection company:</span></td><td class="info-value">${omData.projectInfo.inspectionCompany}</td></tr>
                 <tr><td class="info-label">Ngày thực hiện<br/><span class="info-sublabel">Date of inspection:</span></td><td class="info-value">${omData.projectInfo.inspectionDate}</td></tr>
                 <tr><td class="info-label">Công suất lắp đặt<br/><span class="info-sublabel">Installed capacity:</span></td><td class="info-value">${omData.projectInfo.capacity}</td></tr>
-                <tr><td class="info-label">Ngày vận hành thương mại<br/><span class="info-sublabel">Cod:</span></td><td class="info-value">${omData.projectInfo.codDate || ''}</td></tr>
+                <tr><td class="info-label">Ngày vận hành/COD<br/><span class="info-sublabel">COD Date:</span></td><td class="info-value">${omData.projectInfo.codDate || ''}</td></tr>
                 <tr><td class="info-label">Lần kiểm tra<br/><span class="info-sublabel">Inspection no.:</span></td><td class="info-value">${omData.projectInfo.inspectionNo}</td></tr>
                 <tr><td class="info-label">Kỹ thuật viên<br/><span class="info-sublabel">Technician:</span></td><td class="info-value">${omData.projectInfo.technicians}</td></tr>
             </table>
@@ -227,8 +228,8 @@ class PuppeteerReportService extends IReportService {
                     <th style="width: 15%;">String</th>
                     <th style="width: 12%;">Số tấm / <span class="italic">Qty</span></th>
                     <th style="width: 12%;">Voc (V)</th>
-                    <th style="width: 18%;">(+) - PE (MΩ)</th>
-                    <th style="width: 18%;">(-) - PE (MΩ)</th>
+                    <th style="width: 18%;">IR (+) (MΩ)</th>
+                    <th style="width: 18%;">IR (-) (MΩ)</th>
                     <th style="width: 15%;">Đánh giá <span class="italic">Evaluation</span></th>
                     <th style="width: 10%;">Ghi chú <span class="italic">Remarks</span></th>
                 </tr>
@@ -593,7 +594,7 @@ class PuppeteerReportService extends IReportService {
 
         html += `</body></html>`;
 
-        await page.setContent(html, { waitUntil: 'load', timeout: 90000 });
+        await page.setContent(html, { waitUntil: 'networkidle0', timeout: 90000 });
         await page.pdf({ path: outputPath, format: 'A4', printBackground: true });
         await browser.close();
         return outputPath;

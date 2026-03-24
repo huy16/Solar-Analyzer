@@ -46,10 +46,10 @@ const OM_REPORT_DEFAULT_DATA = {
             { item: "Ghi nhận vị trí tấm pin có hotspot\n(ΔT > 5°C → cảnh báo; ΔT > 10°C → sự cố)\n<span class=\"italic\">Record hotspot panels\n(ΔT > 5°C → warning; > 10°C → fault)</span>", status: "", remarks: "" }
         ],
         insulationResistance: [
-            { string: "String 1", panelQty: "", voc: "", irPlus: "", irMinus: "", evaluation: "" },
-            { string: "String 2", panelQty: "", voc: "", irPlus: "", irMinus: "", evaluation: "" },
-            { string: "String 3", panelQty: "", voc: "", irPlus: "", irMinus: "", evaluation: "" },
-            { string: "String 4", panelQty: "", voc: "", irPlus: "", irMinus: "", evaluation: "" }
+            { string: "String 1", panelQty: "", voc: "", irPlus: "", irMinus: "", evaluation: "", remarks: "" },
+            { string: "String 2", panelQty: "", voc: "", irPlus: "", irMinus: "", evaluation: "", remarks: "" },
+            { string: "String 3", panelQty: "", voc: "", irPlus: "", irMinus: "", evaluation: "", remarks: "" },
+            { string: "String 4", panelQty: "", voc: "", irPlus: "", irMinus: "", evaluation: "", remarks: "" }
         ]
     },
 

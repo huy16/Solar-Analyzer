@@ -228,8 +228,9 @@
         .checklist-item input[type="text"],
         .checklist-item select,
         table input[type="text"],
+        table input[type="number"],
         table select {
-            @apply bg-slate-50 border border-slate-200 text-xs font-medium transition-all outline-none focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/20 hover:border-primary/40 !important;
+            @apply bg-white border border-slate-300 text-xs font-medium transition-all outline-none focus:border-primary focus:ring-4 focus:ring-primary/20 hover:border-primary/40 shadow-sm !important;
         }
 
         /* Specific sizing for standalone groups */
@@ -257,8 +258,9 @@
                    transition-all duration-200 !important;
         }
         table input[type="text"],
+        table input[type="number"],
         table select {
-            @apply px-2 py-1.5 rounded-lg shadow-sm !important;
+            @apply px-3 py-2 rounded-xl shadow-sm !important;
         }
 
         /* Premium Table UI (Section 12) */
@@ -289,7 +291,7 @@
         }
         
         .checklist-item {
-            @apply flex flex-col md:flex-row gap-2 items-start md:items-center p-3 bg-white border border-slate-100 rounded-xl mb-2 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300;
+            @apply flex flex-col md:flex-row gap-2 items-start md:items-center w-full p-3 bg-white border border-slate-100 rounded-xl mb-2 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300;
         }
         
         .btn-camera {
@@ -482,7 +484,6 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-mirror-shine"></div>
             </button>
         </div>
-        </div>
 
         <!-- Sidebar Footer -->
         <div class="flex items-center justify-between px-2 text-[10px] text-slate-400 font-bold uppercase tracking-tight">
@@ -586,7 +587,7 @@
                                         </div>
                                     </div>
                                     <div class="input-group-premium">
-                                        <label>Ngày COD</label>
+                                        <label>Ngày vận hành/COD</label>
                                         <div class="input-container">
                                             <span class="material-symbols-outlined input-icon">event_available</span>
                                             <input type="text" data-path="projectInfo.codDate">
@@ -761,11 +762,117 @@
                                         <option value="OK">Đạt</option><option value="Not OK">Không Đạt</option>
                                     </select>
                                     <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="pvSystem.thermalCheck.0.remarks">
+                                </div>
+                            </div>
+                            <div class="checklist-item mt-3">
+                                <div class="flex-1">
+                                    <p class="text-[13px] font-semibold text-slate-800 tracking-tight">3.6. Ghi nhận vị trí tấm pin có hotspot</p>
+                                    <p class="text-[11px] text-slate-500 italic">(ΔT > 5°C → cảnh báo; ΔT > 10°C → sự cố) - Record hotspot panels</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <select class="w-28 text-sm" data-path="pvSystem.thermalCheck.1.status">
+                                        <option value="" disabled selected>-- Chọn --</option>
+                                        <option value="OK">Đạt</option><option value="Not OK">Không Đạt</option>
+                                    </select>
+                                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="pvSystem.thermalCheck.1.remarks">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- String Insulation Resistance Table -->
+                        <div class="mt-8 border-t border-slate-100 pt-6">
+                            <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary mb-1 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[18px]">bolt</span>
+                                Điện trở cách điện chuỗi pin / <span class="italic text-slate-500 font-normal">String insulation resistance test (MΩ)</span>
+                            </h3>
+                            <div class="text-[11px] text-slate-500 mb-4 bg-blue-50/50 p-2 rounded-lg border border-blue-100">
+                                <p class="flex items-center gap-1"><span class="text-blue-600 font-bold">▸</span> Tiêu chuẩn / Standard: IEC 62446 – ≥ 1 MΩ @ 1000 VDC</p>
+                                <p class="flex items-center gap-1"><span class="text-blue-600 font-bold">▸</span> Off Inverter tại app và off Switch DC trước khi đo.</p>
+                            </div>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-[12px] border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                                    <thead>
+                                        <tr class="bg-slate-50 border-b border-slate-200">
+                                            <th class="p-2 text-left font-bold text-slate-700">String</th>
+                                            <th class="p-2 text-left font-bold text-slate-700 w-20">Số tấm</th>
+                                            <th class="p-2 text-left font-bold text-slate-700 w-20">Voc (V)</th>
+                                            <th class="p-2 text-left font-bold text-slate-700">IR (+) (MΩ)</th>
+                                            <th class="p-2 text-left font-bold text-slate-700">IR (-) (MΩ)</th>
+                                            <th class="p-2 text-left font-bold text-slate-700 w-24">Đánh giá</th>
+                                            <th class="p-2 text-left font-bold text-slate-700">Ghi chú</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="insulationResistanceRows">
+                                        <!-- String 1 -->
+                                        <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                                            <td class="p-2 font-medium text-slate-700">String 1</td>
+                                            <td class="p-2"><input type="number" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.0.panelQty"></td>
+                                            <td class="p-2"><input type="number" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.0.voc"></td>
+                                            <td class="p-2"><input type="number" step="0.1" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.0.irPlus"></td>
+                                            <td class="p-2"><input type="number" step="0.1" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.0.irMinus"></td>
+                                            <td class="p-2">
+                                                <select class="w-full h-8 px-1 text-[11px]" data-path="pvSystem.insulationResistance.0.evaluation">
+                                                    <option value="" disabled selected>--</option>
+                                                    <option value="OK">OK</option>
+                                                    <option value="Not OK">Not OK</option>
+                                                </select>
+                                            </td>
+                                            <td class="p-2"><input type="text" class="w-full h-8 px-2" data-path="pvSystem.insulationResistance.0.remarks"></td>
+                                        </tr>
+                                        <!-- String 2 -->
+                                        <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                                            <td class="p-2 font-medium text-slate-700">String 2</td>
+                                            <td class="p-2"><input type="number" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.1.panelQty"></td>
+                                            <td class="p-2"><input type="number" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.1.voc"></td>
+                                            <td class="p-2"><input type="number" step="0.1" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.1.irPlus"></td>
+                                            <td class="p-2"><input type="number" step="0.1" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.1.irMinus"></td>
+                                            <td class="p-2">
+                                                <select class="w-full h-8 px-1 text-[11px]" data-path="pvSystem.insulationResistance.1.evaluation">
+                                                    <option value="" disabled selected>--</option>
+                                                    <option value="OK">OK</option>
+                                                    <option value="Not OK">Not OK</option>
+                                                </select>
+                                            </td>
+                                            <td class="p-2"><input type="text" class="w-full h-8 px-2" data-path="pvSystem.insulationResistance.1.remarks"></td>
+                                        </tr>
+                                        <!-- String 3 -->
+                                        <tr class="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                                            <td class="p-2 font-medium text-slate-700">String 3</td>
+                                            <td class="p-2"><input type="number" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.2.panelQty"></td>
+                                            <td class="p-2"><input type="number" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.2.voc"></td>
+                                            <td class="p-2"><input type="number" step="0.1" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.2.irPlus"></td>
+                                            <td class="p-2"><input type="number" step="0.1" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.2.irMinus"></td>
+                                            <td class="p-2">
+                                                <select class="w-full h-8 px-1 text-[11px]" data-path="pvSystem.insulationResistance.2.evaluation">
+                                                    <option value="" disabled selected>--</option>
+                                                    <option value="OK">OK</option>
+                                                    <option value="Not OK">Not OK</option>
+                                                </select>
+                                            </td>
+                                            <td class="p-2"><input type="text" class="w-full h-8 px-2" data-path="pvSystem.insulationResistance.2.remarks"></td>
+                                        </tr>
+                                        <!-- String 4 -->
+                                        <tr class="hover:bg-slate-50/50 transition-colors">
+                                            <td class="p-2 font-medium text-slate-700">String 4</td>
+                                            <td class="p-2"><input type="number" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.3.panelQty"></td>
+                                            <td class="p-2"><input type="number" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.3.voc"></td>
+                                            <td class="p-2"><input type="number" step="0.1" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.3.irPlus"></td>
+                                            <td class="p-2"><input type="number" step="0.1" class="w-full h-8 px-2 text-center" data-path="pvSystem.insulationResistance.3.irMinus"></td>
+                                            <td class="p-2">
+                                                <select class="w-full h-8 px-1 text-[11px]" data-path="pvSystem.insulationResistance.3.evaluation">
+                                                    <option value="" disabled selected>--</option>
+                                                    <option value="OK">OK</option>
+                                                    <option value="Not OK">Not OK</option>
+                                                </select>
+                                            </td>
+                                            <td class="p-2"><input type="text" class="w-full h-8 px-2" data-path="pvSystem.insulationResistance.3.remarks"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
                 <!-- TAB 4: KHUNG GIÁ ĐỠ PV -->
                 <div class="tab-pane" id="tab-4">
@@ -797,7 +904,7 @@
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Chụp ảnh tổng quan & chi tiết khung giá đỡ</p><p class="text-[11px] text-slate-500 italic">Overall and detailed photo of mounting structure</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="mountingStructure.checklist.0.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="mountingStructure.checklist.0.remarks">
                             </div>
@@ -865,7 +972,7 @@
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Chụp ảnh tổng quan & chi tiết thiết bị trong tủ</p><p class="text-[11px] text-slate-500 italic">Overall & detail photo of cabinet interior</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="acCabinet.energizedCheck.0.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="acCabinet.energizedCheck.0.remarks">
                             </div>
@@ -903,35 +1010,35 @@
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">5.4. Kiểm tra, siết lực các đầu nối điện (MCCB, MCB, Terminal)</p><p class="text-[11px] text-slate-500 italic">Check & torque electrical terminals (MCCB, MCB, Terminal)</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="acCabinet.deEnergizedCheck.0.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="acCabinet.deEnergizedCheck.0.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">5.5. Đo điện trở cách điện (Hioki IR4053-10 - ≥ 1 MΩ)</p><p class="text-[11px] text-slate-500 italic">Insulation resistance test - ≥ 1 MΩ</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="acCabinet.deEnergizedCheck.1.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="acCabinet.deEnergizedCheck.1.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">5.6. Đo điện trở nối đất (Kyoritsu 4105A - ≤ 4 Ω)</p><p class="text-[11px] text-slate-500 italic">Earth resistance test - ≤ 4 Ω</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="acCabinet.deEnergizedCheck.2.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="acCabinet.deEnergizedCheck.2.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">5.7. Kiểm tra độ kín bụi; xịt foam các lỗ hở trên vỏ tủ</p><p class="text-[11px] text-slate-500 italic">Check dust sealing; foam-seal any openings</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="acCabinet.deEnergizedCheck.3.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="acCabinet.deEnergizedCheck.3.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">5.8. Vệ sinh bên trong tủ và lưới chắn bụi</p><p class="text-[11px] text-slate-500 italic">Clean interior and dust filter</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="acCabinet.deEnergizedCheck.4.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="acCabinet.deEnergizedCheck.4.remarks">
                             </div>
@@ -971,56 +1078,56 @@
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Kiểm tra & siết lực đầu đấu nối AC của Inverter</p><p class="text-[11px] text-slate-500 italic">Check & torque AC terminal connections</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="inverter.checklist.0.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="inverter.checklist.0.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Kiểm tra đầu kết nối MC4 phía DC</p><p class="text-[11px] text-slate-500 italic">Check DC side MC4 connector condition</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="inverter.checklist.1.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="inverter.checklist.1.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Vệ sinh nhãn string dây DC – kiểm tra ghi chú đúng chuẩn</p><p class="text-[11px] text-slate-500 italic">Clean DC string labels – verify labelling standard</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="inverter.checklist.2.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="inverter.checklist.2.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Vệ sinh quạt tản nhiệt (nếu có)</p><p class="text-[11px] text-slate-500 italic">Clean cooling fan (if present)</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="inverter.checklist.3.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="inverter.checklist.3.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Vệ sinh / quét bụi toàn bộ thân Inverter</p><p class="text-[11px] text-slate-500 italic">Clean / dust inverter body</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="inverter.checklist.4.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="inverter.checklist.4.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Kiểm tra log lỗi / cảnh báo trên màn hình Inverter</p><p class="text-[11px] text-slate-500 italic">Check inverter display for error logs / warnings</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="inverter.checklist.5.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="inverter.checklist.5.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Kiểm tra portal / app giám sát online</p><p class="text-[11px] text-slate-500 italic">Check online monitoring portal / app</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="inverter.checklist.6.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">Đạt</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="inverter.checklist.6.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Cập nhật firmware (nếu có phiên bản mới)</p><p class="text-[11px] text-slate-500 italic">Update firmware (if new version available)</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="inverter.checklist.7.status"><option value="" disabled selected>-- Chọn --</option><option value="Đạt">Đạt</option><option value="Không Có">Không Có</option><option value="Không Đạt">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="inverter.checklist.7.remarks">
                             </div>
@@ -1101,28 +1208,28 @@
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Kiểm tra độ kín máng cáp AC & DC</p><p class="text-[11px] text-slate-500 italic">Check sealing of AC & DC cable tray</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="others.cableTray.0.status"><option value="" disabled selected>-- Chọn --</option><option value="Đạt">Đạt</option><option value="Không Đạt">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="others.cableTray.0.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Xịt foam làm kín các điểm hở chưa đạt tiêu chuẩn</p><p class="text-[11px] text-slate-500 italic">Foam-seal any non-compliant gaps</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="others.cableTray.1.status"><option value="" disabled selected>-- Chọn --</option><option value="Đạt">Đạt</option><option value="Không Đạt">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="others.cableTray.1.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">8.3. Kiểm tra đầu nối ống ruột gà với máng cáp (không hở, không lỏng)</p><p class="text-[11px] text-slate-500 italic">Check conduit-to-tray joints (no gap, no looseness)</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="others.cableTray.2.status"><option value="" disabled selected>-- Chọn --</option><option value="Đạt">Đạt</option><option value="Không Đạt">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="others.cableTray.2.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">8.4. Kiểm tra kẹp dây DC & cố định đầu nối MC4</p><p class="text-[11px] text-slate-500 italic">DC cable clamps & MC4 connector fixation</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="others.cableTray.3.status"><option value="" disabled selected>-- Chọn --</option><option value="OK">OK</option><option value="Not OK">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="others.cableTray.3.remarks">
                             </div>
@@ -1152,28 +1259,28 @@
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Chụp ảnh tổng quan xà gồ, vì kèo dưới mái tôn khu vực lắp pin</p><p class="text-[11px] text-slate-500 italic">Photo of purlins & rafters under metal roof at panel area</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="others.roofStructure.0.status"><option value="" disabled selected>-- Chọn --</option><option value="Đạt">Đạt</option><option value="Không Đạt">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="others.roofStructure.0.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Kiểm tra mối hàn liên kết cột – vì kèo</p><p class="text-[11px] text-slate-500 italic">Check weld joints between columns and rafters</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="others.roofStructure.1.status"><option value="" disabled selected>-- Chọn --</option><option value="Đạt">Đạt</option><option value="Không Đạt">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="others.roofStructure.1.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Kiểm tra ngoại quan độ võng vì kèo</p><p class="text-[11px] text-slate-500 italic">Visual check of rafter deflection</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="others.roofStructure.2.status"><option value="" disabled selected>-- Chọn --</option><option value="Đạt">Đạt</option><option value="Không Đạt">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="others.roofStructure.2.remarks">
                             </div>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1"><p class="text-[13px] font-semibold text-slate-800 tracking-tight">Kiểm tra các thanh giằng gia cố (nếu có)</p><p class="text-[11px] text-slate-500 italic">Check reinforcement bracing (if present)</p></div>
-                            <div class="flex items-center gap-2 mt-2 md:mt-0">
+                            <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="others.roofStructure.3.status"><option value="Đạt">Đạt</option><option value="Không Có">Không Có</option><option value="Không Đạt">Không Đạt</option></select>
                                 <input type="text" placeholder="Ghi chú..." class="w-40 text-sm" data-path="others.roofStructure.3.remarks">
                             </div>
@@ -1273,9 +1380,27 @@
                     </div>
                     <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                            <div class="input-group"><label>Cọc tiếp địa chính (Ω) <span id="er-eval-0" class="ml-2 text-xs font-bold"></span></label><input type="number" step="0.1" data-path="earthResistance.0.value" value="" oninput="evaluateEarthResistance(0, this.value)"></div>
-                            <div class="input-group"><label>Vỏ Inverter (Ω) <span id="er-eval-1" class="ml-2 text-xs font-bold"></span></label><input type="number" step="0.1" data-path="earthResistance.1.value" value="" oninput="evaluateEarthResistance(1, this.value)"></div>
-                            <div class="input-group"><label>Vỏ tủ AC (Ω) <span id="er-eval-2" class="ml-2 text-xs font-bold"></span></label><input type="number" step="0.1" data-path="earthResistance.2.value" value="" oninput="evaluateEarthResistance(2, this.value)"></div>
+                            <div class="input-group-premium">
+                                <label>Cọc tiếp địa chính (Ω) <span id="er-eval-0" class="ml-2 text-xs font-bold"></span></label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">bolt</span>
+                                    <input type="number" step="0.1" data-path="earthResistance.0.value" value="" oninput="evaluateEarthResistance(0, this.value)">
+                                </div>
+                            </div>
+                            <div class="input-group-premium">
+                                <label>Vỏ Inverter (Ω) <span id="er-eval-1" class="ml-2 text-xs font-bold"></span></label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">memory</span>
+                                    <input type="number" step="0.1" data-path="earthResistance.1.value" value="" oninput="evaluateEarthResistance(1, this.value)">
+                                </div>
+                            </div>
+                            <div class="input-group-premium">
+                                <label>Vỏ tủ AC (Ω) <span id="er-eval-2" class="ml-2 text-xs font-bold"></span></label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">ev_station</span>
+                                    <input type="number" step="0.1" data-path="earthResistance.2.value" value="" oninput="evaluateEarthResistance(2, this.value)">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1304,13 +1429,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">1. Pin PV</td><td class="py-1 px-2"><select class="w-full py-1 px-1.5 border border-slate-200 rounded text-xs" data-path="summary.0.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.0.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.0.action" placeholder="Đề xuất..."></td></tr>
-                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">2. Tủ AC Solar</td><td class="py-1 px-2"><select class="w-full py-1 px-1.5 border border-slate-200 rounded text-xs" data-path="summary.1.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.1.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.1.action" placeholder="Đề xuất..."></td></tr>
-                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">3. Biến tần</td><td class="py-1 px-2"><select class="w-full py-1 px-1.5 border border-slate-200 rounded text-xs" data-path="summary.2.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.2.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.2.action" placeholder="Đề xuất..."></td></tr>
-                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">4. Giá đỡ Tủ AC</td><td class="py-1 px-2"><select class="w-full py-1 px-1.5 border border-slate-200 rounded text-xs" data-path="summary.3.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.3.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.3.action" placeholder="Đề xuất..."></td></tr>
-                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">5. Máng cáp & Ống ruột gà</td><td class="py-1 px-2"><select class="w-full py-1 px-1.5 border border-slate-200 rounded text-xs" data-path="summary.4.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.4.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.4.action" placeholder="Đề xuất..."></td></tr>
-                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">6. Kết cấu mái</td><td class="py-1 px-2"><select class="w-full py-1 px-1.5 border border-slate-200 rounded text-xs" data-path="summary.5.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.5.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.5.action" placeholder="Đề xuất..."></td></tr>
-                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">7. Tiếp địa</td><td class="py-1 px-2"><select class="w-full py-1 px-1.5 border border-slate-200 rounded text-xs" data-path="summary.6.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.6.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs py-1 px-1.5" data-path="summary.6.action" placeholder="Đề xuất..."></td></tr>
+                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">1. Pin PV</td><td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.0.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.0.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.0.action" placeholder="Đề xuất..."></td></tr>
+                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">2. Tủ AC Solar</td><td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.1.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.1.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.1.action" placeholder="Đề xuất..."></td></tr>
+                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">3. Biến tần</td><td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.2.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.2.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.2.action" placeholder="Đề xuất..."></td></tr>
+                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">4. Giá đỡ Tủ AC</td><td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.3.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.3.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.3.action" placeholder="Đề xuất..."></td></tr>
+                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">5. Máng cáp & Ống ruột gà</td><td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.4.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.4.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.4.action" placeholder="Đề xuất..."></td></tr>
+                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">6. Kết cấu mái</td><td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.5.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.5.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.5.action" placeholder="Đề xuất..."></td></tr>
+                                <tr class="border-b border-slate-100"><td class="py-1 px-2 font-medium text-slate-800">7. Tiếp địa</td><td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.6.severity"><option value="Thấp">Thấp</option><option value="Quan trọng">Quan trọng</option><option value="Khẩn">Khẩn</option></select></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.6.description" value="" placeholder="Mô tả..."></td><td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2" data-path="summary.6.action" placeholder="Đề xuất..."></td></tr>
                             </tbody>
                         </table>
 
