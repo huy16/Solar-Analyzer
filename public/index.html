@@ -583,7 +583,8 @@
                                         <label>Công suất / Cap.</label>
                                         <div class="input-container">
                                             <span class="material-symbols-outlined input-icon">bolt</span>
-                                            <input type="text" data-path="projectInfo.capacity">
+                                            <input type="number" step="0.01" data-path="projectInfo.capacity" placeholder="VD: 100" style="padding-right: 50px;">
+                                            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 11px; font-weight: 700; color: #64748b; pointer-events: none;">kWp</span>
                                         </div>
                                     </div>
                                     <div class="input-group-premium">
@@ -671,7 +672,13 @@
                     </div>
                     
                     <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
-                        <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">Thông số kỹ thuật / <span class="italic">Specifications</span></h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">Thông số kỹ thuật / <span class="italic">Specifications</span></h3>
+                            <button type="button" onclick="showSampleModal('pv')" class="px-3 py-1.5 bg-blue-50 text-primary border border-blue-100 hover:bg-primary hover:text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
+                                <span class="material-symbols-outlined text-[14px]">library_add</span>
+                                Chọn mẫu PV
+                            </button>
+                        </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <div class="input-group"><label>Hãng sản xuất / <span class="italic">Manufacturer</span></label><input type="text" data-path="pvSystem.specs.manufacturer"></div>
                             <div class="input-group"><label>Số lượng tấm / <span class="italic">Panel qty</span></label><input type="text" data-path="pvSystem.specs.panelQty"></div>
@@ -1059,6 +1066,13 @@
                         </div>
                     </div>
                     <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">Thông số biến tần / <span class="italic font-normal text-slate-500">Inverter specs</span></h3>
+                            <button type="button" onclick="showSampleModal('inverter')" class="px-3 py-1.5 bg-blue-50 text-primary border border-blue-100 hover:bg-primary hover:text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
+                                <span class="material-symbols-outlined text-[14px]">library_add</span>
+                                Chọn mẫu Inverter
+                            </button>
+                        </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <div class="input-group"><label>Hãng sản xuất / <span class="italic">Manufacturer</span></label><input type="text" data-path="inverter.specs.manufacturer"></div>
                             <div class="input-group"><label>Model</label><input type="text" data-path="inverter.specs.model"></div>

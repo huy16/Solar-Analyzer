@@ -1,5 +1,24 @@
 let OM_DATA = {};
 
+const SAMPLE_PV_DATA = [
+    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-MS', capacity: 660, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'CS6.2-66TB-625', capacity: 625, qty: 100 },
+    { manufacturer: 'Astronergy', model: 'ASTRO-5 CHSM72M-HC', capacity: 550, qty: 100 },
+    { manufacturer: 'TCL', model: 'N-Type Topcon G12', capacity: 700, qty: 100 },
+    { manufacturer: 'Hershey', model: 'HSM-BD72-GC635-660', capacity: 650, qty: 100 }
+];
+
+const SAMPLE_INVERTER_DATA = [
+    { manufacturer: 'Huawei', model: 'SUN2000-30KTL-M3', capacity: 30 },
+    { manufacturer: 'Huawei', model: 'SUN2000-40KTL-M3', capacity: 40 },
+    { manufacturer: 'Huawei', model: 'SUN2000-50KTL-M3', capacity: 50 },
+    { manufacturer: 'Huawei', model: 'SUN2000-100KTL-M2', capacity: 100 },
+    { manufacturer: 'Huawei', model: 'SUN2000-115KTL-M2', capacity: 115 },
+    { manufacturer: 'Huawei', model: 'SUN2000-12-25KTL-M5', capacity: 25 },
+    { manufacturer: 'Huawei', model: 'SUN2000-150K-MG0', capacity: 150 }
+];
+
+
 // Wait for DOM
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Setup Tabs
@@ -653,4 +672,85 @@ function updateSidebarStatus() {
             dot.classList.remove('completed');
         }
     });
+}
+// ==========================================
+// Sample Data Selection UI
+// ==========================================
+function showSampleModal(type) {
+    const list = type === 'pv' ? SAMPLE_PV_DATA : SAMPLE_INVERTER_DATA;
+    const modalId = `sample-modal-${type}`;
+    
+    // Create modal if not exists
+    let modal = document.getElementById(modalId);
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = modalId;
+        modal.className = 'fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 backdrop-blur-sm';
+        modal.innerHTML = `
+            <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden border border-slate-100 transform transition-all">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-5">
+                        <h3 class="text-lg font-black text-slate-800 uppercase tracking-tight">Chọn mẫu ${type === 'pv' ? 'Tấm pin (PV)' : 'Inverter'}</h3>
+                        <button onclick="closeSampleModal('${type}')" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 text-slate-500 transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">close</span>
+                        </button>
+                    </div>
+                    <div class="space-y-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                        ${list.map((item, index) => `
+                            <button onclick="applySample('${type}', ${index})" class="w-full p-4 flex items-center justify-between text-left rounded-xl border border-slate-200 hover:border-primary hover:bg-primary/5 transition-all group">
+                                <div>
+                                    <p class="font-bold text-slate-800 text-[14px]">${item.model}</p>
+                                    <p class="text-[11px] text-slate-500 font-medium">${item.manufacturer} • ${item.capacity}${type === 'pv' ? ' Wp' : ' kW'}</p>
+                                </div>
+                                <span class="material-symbols-outlined text-transparent group-hover:text-primary transition-all">arrow_forward_ios</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function closeSampleModal(type) {
+    const modal = document.getElementById(`sample-modal-${type}`);
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+function applySample(type, index) {
+    const data = type === 'pv' ? SAMPLE_PV_DATA[index] : SAMPLE_INVERTER_DATA[index];
+    
+    if (type === 'pv') {
+        const manInput = document.querySelector('[data-path="pvSystem.specs.manufacturer"]');
+        const modInput = document.querySelector('[data-path="pvSystem.specs.panelModel"]');
+        const capInput = document.querySelector('[data-path="pvSystem.specs.capacity"]');
+        const qtyInput = document.querySelector('[data-path="pvSystem.specs.panelQty"]');
+        
+        if (manInput) manInput.value = data.manufacturer;
+        if (modInput) modInput.value = data.model;
+        if (capInput) capInput.value = data.capacity;
+        if (qtyInput) qtyInput.value = data.qty;
+    } else {
+        const manInput = document.querySelector('[data-path="inverter.specs.manufacturer"]');
+        const modInput = document.querySelector('[data-path="inverter.specs.model"]');
+        const powInput = document.querySelector('[data-path="inverter.specs.power"]');
+        const qtyInput = document.querySelector('[data-path="inverter.specs.qty"]');
+        
+        if (manInput) manInput.value = data.manufacturer;
+        if (modInput) modInput.value = data.model;
+        if (powInput) powInput.value = data.capacity;
+        if (qtyInput) qtyInput.value = 1; // Default qty = 1 for inverter samples
+    }
+    
+    // Update labels and sidebar
+    updateSidebarStatus();
+    closeSampleModal(type);
+    showToast(`Đã áp dụng thông số mẫu cho ${data.model}`);
 }
