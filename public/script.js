@@ -18,6 +18,10 @@ const SAMPLE_INVERTER_DATA = [
     { manufacturer: 'Huawei', model: 'SUN2000-150K-MG0', capacity: 150 }
 ];
 
+const SAMPLE_AC_DATA = [
+    { manufacturer: 'CAS/ Việt Nam', model: 'CAS-SB-2ST', cbQty: 5, ipRating: 'IP65' }
+];
+
 
 // Wait for DOM
 document.addEventListener('DOMContentLoaded', async () => {
@@ -677,7 +681,11 @@ function updateSidebarStatus() {
 // Sample Data Selection UI
 // ==========================================
 function showSampleModal(type) {
-    const list = type === 'pv' ? SAMPLE_PV_DATA : SAMPLE_INVERTER_DATA;
+    let list = [];
+    if (type === 'pv') list = SAMPLE_PV_DATA;
+    else if (type === 'inverter') list = SAMPLE_INVERTER_DATA;
+    else if (type === 'ac') list = SAMPLE_AC_DATA;
+    
     const modalId = `sample-modal-${type}`;
     
     // Create modal if not exists
@@ -690,7 +698,7 @@ function showSampleModal(type) {
             <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden border border-slate-100 transform transition-all">
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-5">
-                        <h3 class="text-lg font-black text-slate-800 uppercase tracking-tight">Chọn mẫu ${type === 'pv' ? 'Tấm pin (PV)' : 'Inverter'}</h3>
+                        <h3 class="text-lg font-black text-slate-800 uppercase tracking-tight">Chọn mẫu ${type === 'pv' ? 'Tấm pin (PV)' : (type === 'inverter' ? 'Inverter' : 'Tủ điện AC')}</h3>
                         <button onclick="closeSampleModal('${type}')" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 text-slate-500 transition-colors">
                             <span class="material-symbols-outlined text-[18px]">close</span>
                         </button>
@@ -700,7 +708,7 @@ function showSampleModal(type) {
                             <button onclick="applySample('${type}', ${index})" class="w-full p-4 flex items-center justify-between text-left rounded-xl border border-slate-200 hover:border-primary hover:bg-primary/5 transition-all group">
                                 <div>
                                     <p class="font-bold text-slate-800 text-[14px]">${item.model}</p>
-                                    <p class="text-[11px] text-slate-500 font-medium">${item.manufacturer} • ${item.capacity}${type === 'pv' ? ' Wp' : ' kW'}</p>
+                                    <p class="text-[11px] text-slate-500 font-medium">${item.manufacturer} ${item.capacity ? `• ${item.capacity}${type === 'pv' ? ' Wp' : ' kW'}` : ''}</p>
                                 </div>
                                 <span class="material-symbols-outlined text-transparent group-hover:text-primary transition-all">arrow_forward_ios</span>
                             </button>
@@ -725,7 +733,10 @@ function closeSampleModal(type) {
 }
 
 function applySample(type, index) {
-    const data = type === 'pv' ? SAMPLE_PV_DATA[index] : SAMPLE_INVERTER_DATA[index];
+    let data;
+    if (type === 'pv') data = SAMPLE_PV_DATA[index];
+    else if (type === 'inverter') data = SAMPLE_INVERTER_DATA[index];
+    else if (type === 'ac') data = SAMPLE_AC_DATA[index];
     
     if (type === 'pv') {
         const manInput = document.querySelector('[data-path="pvSystem.specs.manufacturer"]');
@@ -737,7 +748,7 @@ function applySample(type, index) {
         if (modInput) modInput.value = data.model;
         if (capInput) capInput.value = data.capacity;
         if (qtyInput) qtyInput.value = data.qty;
-    } else {
+    } else if (type === 'inverter') {
         const manInput = document.querySelector('[data-path="inverter.specs.manufacturer"]');
         const modInput = document.querySelector('[data-path="inverter.specs.model"]');
         const powInput = document.querySelector('[data-path="inverter.specs.power"]');
@@ -747,6 +758,16 @@ function applySample(type, index) {
         if (modInput) modInput.value = data.model;
         if (powInput) powInput.value = data.capacity;
         if (qtyInput) qtyInput.value = 1; // Default qty = 1 for inverter samples
+    } else if (type === 'ac') {
+        const manInput = document.querySelector('[data-path="acCabinet.specs.manufacturer"]');
+        const modInput = document.querySelector('[data-path="acCabinet.specs.model"]');
+        const qtyInput = document.querySelector('[data-path="acCabinet.specs.cbQty"]');
+        const ipInput = document.querySelector('[data-path="acCabinet.specs.ipRating"]');
+        
+        if (manInput) manInput.value = data.manufacturer;
+        if (modInput) modInput.value = data.model;
+        if (qtyInput) qtyInput.value = data.cbQty;
+        if (ipInput) ipInput.value = data.ipRating;
     }
     
     // Update labels and sidebar
