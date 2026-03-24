@@ -135,10 +135,26 @@ class GenerateThermalReport {
                 categories[type] = {
                     categoryTitle: DeviceClassifier.getLabel(type),
                     items: [],
-                    remarks: img.conclusion || "Há»‡ thá»‘ng hoáº¡t Ä‘á»™ng bÃ¬nh thÆ°á»ng, tá»•n hao nhiá»‡t tÆ°Æ¡ng Ä‘á»‘i tháº¥p, khÃ´ng phÃ¡t hiá»‡n rá»§i ro chÃ¡y ná»•."
+                    remarks: "" // Will be aggregated or picked from items
                 };
             }
             categories[type].items.push(img);
+        });
+
+        // Set default category remarks if still empty
+        Object.values(categories).forEach(cat => {
+            if (!cat.remarks) {
+                const hasCritical = cat.items.some(i => i.severity === "Critical");
+                const hasWarning = cat.items.some(i => i.severity === "Warning");
+                
+                if (hasCritical) {
+                    cat.remarks = "Phát hiện quá nhiệt nghiêm trọng. Cần kiểm tra và xử lý gấp.";
+                } else if (hasWarning) {
+                    cat.remarks = "Phát hiện một số điểm tăng nhiệt bất thường. Cần theo dõi thêm.";
+                } else {
+                    cat.remarks = "Hệ thống hoạt động bình thường, tổn hao nhiệt tương đối thấp, không phát hiện rủi ro cháy nổ.";
+                }
+            }
         });
 
         // Convert to array and maintain sort order

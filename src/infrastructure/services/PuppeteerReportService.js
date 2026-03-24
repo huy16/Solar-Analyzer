@@ -752,7 +752,7 @@ class PuppeteerReportService extends IReportService {
                     <td class="bg-gray" style="width: 15%;">File</td>
                     <td style="width: 35%;">${item.filename}.BMT</td>
                     <td class="bg-gray" style="width: 20%;">Trạng thái / <span class="italic">Status</span></td>
-                    <td style="width: 30%; color: ${(item.severity || '').toLowerCase() === 'khẩn' ? '#cc0000' : ((item.severity || '').toLowerCase() === 'quan trọng' ? '#f59e0b' : '#22c55e')};" class="font-bold uppercase">${item.severity || 'Normal'}</td>
+                    <td style="width: 30%; color: ${(['khẩn', 'critical'].includes((item.severity || '').toLowerCase())) ? '#cc0000' : (['quan trọng', 'warning'].includes((item.severity || '').toLowerCase())) ? '#f59e0b' : '#22c55e'};" class="font-bold uppercase">${item.severity || 'Normal'}</td>
                 </tr>
                 <tr>
                     <td class="bg-gray">Ngày / Date</td>
@@ -781,7 +781,7 @@ class PuppeteerReportService extends IReportService {
             <table>
                 <tr><th>Vị trí / Spot</th><th>Nhiệt độ / Temp (°C)</th><th>Đánh giá / Evaluation</th></tr>
                 <tr><td>Hot Spot (HS1)</td><td class="text-center font-bold">${item.maxTemp}</td><td class="text-center italic">${item.severity || 'Normal'}</td></tr>
-                <tr><td>Trung tâm (M1)</td><td class="text-center font-bold">${item.centerTemp}</td><td class="text-center">Normal</td></tr>
+                <tr><td>Trung tâm (M1)</td><td class="text-center font-bold">${item.centerTemp}</td><td class="text-center">${item.m1Status || 'Normal'}</td></tr>
             </table>
 
             <div style="margin-top: 10px; padding: 10px; border: 1px solid #cc0000; border-radius: 4px;">
