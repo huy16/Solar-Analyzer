@@ -27,6 +27,9 @@ class GenerateThermalReport {
                 thermalImage.conclusion = conclusion;
                 thermalImage.recommendation = recommendation;
 
+                // Default classification if not provided
+                thermalImage.deviceType = DeviceClassifier.classify(file.originalname, thermalImage);
+
                 // Only override if a specific manual category is provided (not the default 'device')
                 if (manualCategory && manualCategory !== "device") {
                     let mappedType = manualCategory;
