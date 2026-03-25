@@ -70,11 +70,11 @@ app.post('/upload', upload.any(), (req, res) => {
 
 const start = (portParam, callback) => {
     const portToUse = portParam || PORT;
-    const server = app.listen(portToUse, () => {
+    const server = app.listen(portToUse, '0.0.0.0', () => {
         const address = server.address();
         if (address) {
             const port = address.port;
-            console.log(`Server running at http://localhost:${port}`);
+            console.log(`Server running at http://0.0.0.0:${port}`);
             console.log('CLEAN ARCHITECTURE ENABLED');
             if (callback) callback(port);
         } else {
