@@ -63,8 +63,8 @@ const OM_REPORT_DEFAULT_DATA = {
         },
         checklist: [
             { item: "Chụp ảnh tổng quan & chi tiết khung giá đỡ\n<span class=\"italic\">Overall and detailed photo of mounting structure</span>", status: "" },
-            { item: "Siết lực ốc kẹp biên (end clamp) – theo torque nhà SX\n<span class=\"italic\">End clamp torque check – per manufacturer spec</span>", status: "" },
-            { item: "Siết lực ốc kẹp giữa (mid clamp) – theo torque nhà SX\n<span class=\"italic\">Mid clamp torque check – per manufacturer spec</span>", status: "" },
+            { item: "Siết lực ốc kẹp biên – theo torque nhà SX\n<span class=\"italic\">End clamp torque check – per manufacturer spec</span>", status: "" },
+            { item: "Siết lực ốc kẹp giữa – theo torque nhà SX\n<span class=\"italic\">Mid clamp torque check – per manufacturer spec</span>", status: "" },
             { item: "Kiểm tra ống ruột gà đi dây cáp DC trên mái\n<span class=\"italic\">DC cable conduit on roof</span>", status: "" },
             { item: "Kiểm tra kẹp dây DC & cố định đầu nối MC4\n<span class=\"italic\">DC cable clamps & MC4 connector fixation</span>", status: "" }
         ]
@@ -151,13 +151,13 @@ const OM_REPORT_DEFAULT_DATA = {
 
     // Section 12: Summary
     summary: [
-        { module: "Hệ thống pin năng lượng mặt trời\n<span class=\"italic\">PV System</span>", severity: "Thấp", description: "", action: "" },
-        { module: "Tủ điện AC Solar\n<span class=\"italic\">Solar AC Cabinet</span>", severity: "Thấp", description: "", action: "" },
-        { module: "Biến tần\n<span class=\"italic\">Inverter</span>", severity: "Thấp", description: "", action: "" },
-        { module: "Khung giá đỡ Tủ AC / Inverter\n<span class=\"italic\">AC Cabinet & Inverter Mounting Frame</span>", severity: "Thấp", description: "", action: "" },
-        { module: "Máng cáp & Ống ruột gà (AC / DC)\n<span class=\"italic\">Cable Tray & Conduit (AC / DC)</span>", severity: "Thấp", description: "", action: "" },
-        { module: "Kết cấu mái\n<span class=\"italic\">Roof Structure</span>", severity: "Thấp", description: "", action: "" },
-        { module: "Hệ thống tiếp địa\n<span class=\"italic\">Grounding System</span>", severity: "Thấp", description: "", action: "" }
+        { module: "Hệ thống pin năng lượng mặt trời\n<span class=\"italic\">PV System</span>", severity: "Thấp", description: "Không", action: "" },
+        { module: "Tủ điện AC Solar\n<span class=\"italic\">Solar AC Cabinet</span>", severity: "Thấp", description: "Không", action: "" },
+        { module: "Biến tần\n<span class=\"italic\">Inverter</span>", severity: "Thấp", description: "Không", action: "" },
+        { module: "Khung giá đỡ Tủ AC / Inverter\n<span class=\"italic\">AC Cabinet & Inverter Mounting Frame</span>", severity: "Thấp", description: "Không", action: "" },
+        { module: "Máng cáp & Ống ruột gà (AC / DC)\n<span class=\"italic\">Cable Tray & Conduit (AC / DC)</span>", severity: "Thấp", description: "Không", action: "" },
+        { module: "Kết cấu mái\n<span class=\"italic\">Roof Structure</span>", severity: "Thấp", description: "Không", action: "" },
+        { module: "Hệ thống tiếp địa\n<span class=\"italic\">Grounding System</span>", severity: "Thấp", description: "Hệ thống tiếp địa đạt tiêu chuẩn (≤ 4Ω)", action: "" }
     ],
 
     overallComments: "",

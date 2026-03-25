@@ -194,14 +194,19 @@ class PuppeteerReportService extends IReportService {
                     <th style="width: 12%;">Không đạt <br/><span class="italic">(Not Ok)</span></th>
                     <th style="width: 31%;">Ghi chú / <span class="italic">Remarks</span></th>
                 </tr>
-                ${(omData.pvSystem.checklist || []).map(c => `
+                ${(omData.pvSystem.checklist || []).map(c => {
+                    const status = (c.status || '').trim();
+                    const isOk = status === 'OK' || status === 'Đạt' || status === 'Normal';
+                    const isNok = status === 'Not OK' || status === 'Không Đạt' || status === 'Nok';
+                    return `
                     <tr>
                         <td>${c.item.replace(/\n/g, '<br/>')}</td>
-                        <td class="text-center">${this._renderCheck(c.status === 'OK' || c.status === 'Đạt')}</td>
-                        <td class="text-center">${this._renderCheck(c.status === 'Not OK' || c.status === 'Không Đạt')}</td>
+                        <td class="text-center">${this._renderCheck(isOk)}</td>
+                        <td class="text-center">${this._renderCheck(isNok)}</td>
                         <td>${c.remarks || ''}</td>
                     </tr>
-                `).join('')}
+                    `;
+                }).join('')}
             </table>
 
             <div class="font-bold" style="margin-top: 10px; margin-bottom: 5px;">Kiểm tra nhiệt độ <span class="italic">(Thermal imaging check)</span></div>
@@ -212,14 +217,19 @@ class PuppeteerReportService extends IReportService {
                     <th style="width: 12%;">Không đạt <br/><span class="italic">(Not Ok)</span></th>
                     <th style="width: 31%;">Ghi chú / <span class="italic">Remarks</span></th>
                 </tr>
-                ${(omData.pvSystem.thermalCheck || []).map(c => `
+                ${(omData.pvSystem.thermalCheck || []).map(c => {
+                    const status = (c.status || '').trim();
+                    const isOk = status === 'OK' || status === 'Đạt' || status === 'Normal';
+                    const isNok = status === 'Not OK' || status === 'Không Đạt' || status === 'Nok';
+                    return `
                     <tr>
                         <td>${c.item.replace('\n', '<br/>')}</td>
-                        <td class="text-center">${this._renderCheck(c.status === 'OK' || c.status === 'Đạt')}</td>
-                        <td class="text-center">${this._renderCheck(c.status === 'Not OK' || c.status === 'Không Đạt')}</td>
+                        <td class="text-center">${this._renderCheck(isOk)}</td>
+                        <td class="text-center">${this._renderCheck(isNok)}</td>
                         <td>${c.remarks || ''}</td>
                     </tr>
-                `).join('')}
+                    `;
+                }).join('')}
             </table>
             <div class="font-bold" style="margin-top: 15px; margin-bottom: 5px;">Điện trở cách điện chuỗi pin <span class="italic">(String insulation resistance test (MΩ))</span></div>
             <div style="font-size: 8.5pt; color: #333; margin-bottom: 10px; line-height: 1.5;">
@@ -282,14 +292,19 @@ class PuppeteerReportService extends IReportService {
                     <th style="width: 12%;">Không đạt <br/><span class="italic">(Not Ok)</span></th>
                     <th style="width: 31%;">Ghi chú / <span class="italic">Remarks</span></th>
                 </tr>
-                ${(omData.mountingStructure.checklist || []).map(c => `
+                ${(omData.mountingStructure.checklist || []).map(c => {
+                    const status = (c.status || '').trim();
+                    const isOk = status === 'OK' || status === 'Đạt' || status === 'Normal';
+                    const isNok = status === 'Not OK' || status === 'Không Đạt' || status === 'Nok';
+                    return `
                     <tr>
                         <td>${c.item.replace(/\n/g, '<br/>')}</td>
-                        <td class="text-center">${this._renderCheck(c.status === 'OK' || c.status === 'Đạt')}</td>
-                        <td class="text-center">${this._renderCheck(c.status === 'Not OK' || c.status === 'Không Đạt')}</td>
+                        <td class="text-center">${this._renderCheck(isOk)}</td>
+                        <td class="text-center">${this._renderCheck(isNok)}</td>
                         <td>${c.remarks || ''}</td>
                     </tr>
-                `).join('')}
+                    `;
+                }).join('')}
             </table>
 
             <div style="margin-top: 15px;">
@@ -427,14 +442,19 @@ class PuppeteerReportService extends IReportService {
                     <th style="width: 15%;">Không đạt <br/><span class="italic">(Not Ok)</span></th>
                     <th style="width: 15%;">Ghi chú / <span class="italic">Remarks</span></th>
                 </tr>
-                ${omData.others.mountingFrame.checklist.map(c => `
-                <tr>
-                    <td>${c.item.replace(/\n/g, '<br/>')}</td>
-                    <td class="text-center">${this._renderCheck(c.status === 'Đạt' || c.status === 'OK')}</td>
-                    <td class="text-center">${this._renderCheck(c.status === 'Không Đạt' || c.status === 'Not OK')}</td>
-                    <td>${c.remarks || ''}</td>
-                </tr>
-                `).join('')}
+                ${omData.others.mountingFrame.checklist.map(c => {
+                    const status = (c.status || '').trim();
+                    const isOk = status === 'Đạt' || status === 'OK' || status === 'Normal';
+                    const isNok = status === 'Không Đạt' || status === 'Not OK' || status === 'Nok';
+                    return `
+                    <tr>
+                        <td>${c.item.replace(/\n/g, '<br/>')}</td>
+                        <td class="text-center">${this._renderCheck(isOk)}</td>
+                        <td class="text-center">${this._renderCheck(isNok)}</td>
+                        <td>${c.remarks || ''}</td>
+                    </tr>
+                    `;
+                }).join('')}
             </table>
 
             <div class="section-header">8. Máng cáp & Ống ruột gà (AC / DC) / Cable Tray & Conduit (AC / DC)</div>
@@ -446,14 +466,19 @@ class PuppeteerReportService extends IReportService {
                     <th style="width: 15%;">Không đạt <br/><span class="italic">(Not Ok)</span></th>
                     <th style="width: 15%;">Ghi chú / <span class="italic">Remarks</span></th>
                 </tr>
-                ${omData.others.cableTray.map(c => `
-                <tr>
-                    <td>${c.item.replace(/\n/g, '<br/>')}</td>
-                    <td class="text-center">${this._renderCheck(c.status === 'Đạt' || c.status === 'OK')}</td>
-                    <td class="text-center">${this._renderCheck(c.status === 'Không Đạt' || c.status === 'Not OK')}</td>
-                    <td>${c.remarks || ''}</td>
-                </tr>
-                `).join('')}
+                ${omData.others.cableTray.map(c => {
+                    const status = (c.status || '').trim();
+                    const isOk = status === 'Đạt' || status === 'OK' || status === 'Normal';
+                    const isNok = status === 'Không Đạt' || status === 'Not OK' || status === 'Nok';
+                    return `
+                    <tr>
+                        <td>${c.item.replace(/\n/g, '<br/>')}</td>
+                        <td class="text-center">${this._renderCheck(isOk)}</td>
+                        <td class="text-center">${this._renderCheck(isNok)}</td>
+                        <td>${c.remarks || ''}</td>
+                    </tr>
+                    `;
+                }).join('')}
             </table>
 
 
@@ -466,14 +491,19 @@ class PuppeteerReportService extends IReportService {
                     <th style="width: 15%;">Không đạt <br/><span class="italic">(Not Ok)</span></th>
                     <th style="width: 15%;">Ghi chú / <span class="italic">Remarks</span></th>
                 </tr>
-                ${omData.others.roofStructure.map(c => `
-                <tr>
-                    <td>${c.item.replace(/\n/g, '<br/>')}</td>
-                    <td class="text-center">${this._renderCheck(c.status === 'Đạt' || c.status === 'OK' || c.status === 'Không Có')}</td>
-                    <td class="text-center">${this._renderCheck(c.status === 'Không Đạt' || c.status === 'Not OK')}</td>
-                    <td>${c.remarks || ''}</td>
-                </tr>
-                `).join('')}
+                ${omData.others.roofStructure.map(c => {
+                    const status = (c.status || '').trim();
+                    const isOk = status === 'Đạt' || status === 'OK' || status === 'Normal' || status === 'Không Có';
+                    const isNok = status === 'Không Đạt' || status === 'Not OK' || status === 'Nok';
+                    return `
+                    <tr>
+                        <td>${c.item.replace(/\n/g, '<br/>')}</td>
+                        <td class="text-center">${this._renderCheck(isOk)}</td>
+                        <td class="text-center">${this._renderCheck(isNok)}</td>
+                        <td>${c.remarks || ''}</td>
+                    </tr>
+                    `;
+                }).join('')}
             </table>
 
             <div class="section-header" style="margin-top: 20px;">10. Kết quả kiểm tra nhiệt ảnh / <span class="italic">Thermal Imaging Results</span></div>

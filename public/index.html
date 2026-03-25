@@ -400,8 +400,10 @@
     </style>
     <style>
         /* Force centered alignment and clean appearance for all status selects */
-        .status-select, select[data-path*="status"], select[data-path*="evaluation"] { 
-            text-align-last: center !important; 
+        .status-select,
+        select[data-path*="status"],
+        select[data-path*="evaluation"] {
+            text-align-last: center !important;
             text-align: center !important;
             -webkit-appearance: none !important;
             -moz-appearance: none !important;
@@ -652,8 +654,7 @@
             class="flex items-center justify-between px-2 text-[10px] text-slate-400 font-bold uppercase tracking-tight">
             <span>CAS Solar © 2026</span>
             <button onclick="logout()" class="flex items-center gap-1.5 hover:text-red-500 transition-colors group">
-                <span
-                    class="material-symbols-outlined text-[16px] transition-transform">logout</span>
+                <span class="material-symbols-outlined text-[16px] transition-transform">logout</span>
                 Đăng xuất
             </button>
         </div>
@@ -724,7 +725,8 @@
                                 <h3
                                     class="text-[9px] font-black uppercase tracking-[0.15em] text-primary/60 flex items-center gap-1.5">
                                     <span class="material-symbols-outlined text-[13px]">apartment</span> Khách hàng &
-                                    Địa điểm</h3>
+                                    Địa điểm
+                                </h3>
 
                                 <div class="input-group-premium">
                                     <label>Dự án / Project</label>
@@ -754,7 +756,8 @@
                                 <h3
                                     class="text-[9px] font-black uppercase tracking-[0.15em] text-primary/60 flex items-center gap-1.5">
                                     <span class="material-symbols-outlined text-[13px]">settings</span> Thông số hệ
-                                    thống</h3>
+                                    thống
+                                </h3>
 
                                 <div class="grid grid-cols-2 gap-2">
                                     <div class="input-group-premium">
@@ -804,7 +807,8 @@
                         <div class="px-4 py-2.5 bg-slate-50/70 border-t border-slate-100">
                             <h3
                                 class="text-[9px] font-black uppercase tracking-[0.15em] text-primary/60 mb-1.5 flex items-center gap-1.5">
-                                <span class="material-symbols-outlined text-[13px]">groups</span> Đội ngũ thực hiện</h3>
+                                <span class="material-symbols-outlined text-[13px]">groups</span> Đội ngũ thực hiện
+                            </h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <div class="input-group-premium">
                                     <label>Công ty thực hiện</label>
@@ -1035,8 +1039,10 @@
                                 class="text-[11px] text-slate-500 mb-4 bg-blue-50/50 p-2 rounded-lg border border-blue-100">
                                 <p class="flex items-center gap-1"><span class="text-blue-600 font-bold">▸</span> Tiêu
                                     chuẩn / Standard: IEC 62446 – ≥ 1 MΩ @ 1000 VDC</p>
-                                <p class="flex items-center gap-1"><span class="text-blue-600 font-bold">▸</span> <b>IR (+) / IR (-)</b>: Điện trở cách điện giữa cực Dương/Âm và Đất (Ground).</p>
-                                <p class="flex items-center gap-1"><span class="text-blue-600 font-bold">▸</span> Off Inverter tại app và off Switch DC trước khi đo.</p>
+                                <p class="flex items-center gap-1"><span class="text-blue-600 font-bold">▸</span> <b>IR
+                                        (+) / IR (-)</b>: Điện trở cách điện giữa cực Dương/Âm và Đất (Ground).</p>
+                                <p class="flex items-center gap-1"><span class="text-blue-600 font-bold">▸</span> Off
+                                    Inverter tại app và off Switch DC trước khi đo.</p>
                             </div>
 
                             <div class="overflow-x-auto">
@@ -1175,8 +1181,10 @@
 
                     <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
                         <div class="flex items-center justify-between mb-3">
-                            <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                                Thông số kỹ thuật / <span class="italic font-normal text-slate-500">Specifications</span>
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                                Thông số kỹ thuật / <span
+                                    class="italic font-normal text-slate-500">Specifications</span>
                             </h3>
                             <button type="button" onclick="showSampleModal('structure_pv')"
                                 class="px-3 py-1.5 bg-blue-50 text-primary border border-blue-100 hover:bg-primary hover:text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
@@ -1198,7 +1206,8 @@
                                 <input type="text" data-path="mountingStructure.specs.installYear">
                             </div>
                             <div class="input-group">
-                                <label class="whitespace-nowrap text-[9px] min-[1400px]:text-[10px]">Tình trạng tổng thể / Overall condition</label>
+                                <label class="whitespace-nowrap text-[9px] min-[1400px]:text-[10px]">Tình trạng tổng thể
+                                    / Overall condition</label>
                                 <input type="text" data-path="mountingStructure.specs.overallCondition">
                             </div>
                         </div>
@@ -1209,7 +1218,8 @@
                             <h3
                                 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
                                 <span class="material-symbols-outlined text-[18px]">fact_check</span>Các hạng mục kiểm
-                                tra / <span class="italic text-slate-500 font-normal">Inspection items</span></h3>
+                                tra / <span class="italic text-slate-500 font-normal">Inspection items</span>
+                            </h3>
                             <button type="button" onclick="selectAllNormal('tab-4')"
                                 class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
                                 <span
@@ -1352,7 +1362,8 @@
                             <h3
                                 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
                                 <span class="material-symbols-outlined text-[18px]">flash_on</span>Kiểm tra CÓ ĐIỆN /
-                                <span class="italic text-slate-500 font-normal">Energized inspection</span></h3>
+                                <span class="italic text-slate-500 font-normal">Energized inspection</span>
+                            </h3>
                             <button type="button" onclick="selectAllNormal('tab-5')"
                                 class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
                                 <span
@@ -1427,7 +1438,8 @@
                             <h3
                                 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
                                 <span class="material-symbols-outlined text-[18px]">power_off</span>Kiểm tra KHÔNG ĐIỆN
-                                / <span class="italic text-slate-500 font-normal">De-Energized inspection</span></h3>
+                                / <span class="italic text-slate-500 font-normal">De-Energized inspection</span>
+                            </h3>
                             <button type="button" onclick="selectAllNormal('tab-5')"
                                 class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
                                 <span
@@ -1565,7 +1577,8 @@
                                 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
                                 <span class="material-symbols-outlined text-[18px]">settings_input_component</span>Các
                                 hạng mục kiểm tra / <span class="italic text-slate-500 font-normal">Inspection
-                                    items</span></h3>
+                                    items</span>
+                            </h3>
                             <button type="button" onclick="selectAllNormal('tab-6')"
                                 class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
                                 <span
@@ -1698,667 +1711,722 @@
                     </div>
                 </div>
 
-    <!-- TAB 7, 8, 9: Shortened checklists for these -->
-    <div class="tab-pane" id="tab-7">
-        <div class="relative mb-4 rounded-xl overflow-hidden">
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
-            </div>
-            <div class="relative px-5 py-2.5 flex items-center gap-3">
-                <span class="material-symbols-outlined text-white text-[22px]">view_module</span>
-                <div>
-                    <h2 class="text-base font-headline font-bold text-white tracking-tight">7. Khung giá đỡ Tủ
-                        AC/Inverter</h2>
-                    <p class="text-white/70 text-[10px]">AC/Inverter Mounting Frame</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
-            <div class="flex items-center justify-between mb-3">
-                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                    Thông số kỹ thuật / <span class="italic font-normal text-slate-500">Specifications</span>
-                </h3>
-                <button type="button" onclick="showSampleModal('structure_ac')"
-                    class="px-3 py-1.5 bg-blue-50 text-primary border border-blue-100 hover:bg-primary hover:text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
-                    <span class="material-symbols-outlined text-[14px]">library_add</span>
-                    Chọn mẫu Khung AC
-                </button>
-            </div>
-            <div class="grid grid-cols-2 lg:grid-cols-[1.1fr_1.1fr_1.1fr_1.7fr] gap-3">
-                <div class="input-group">
-                    <label class="whitespace-nowrap">Loại kết cấu / Structure type</label>
-                    <input type="text" data-path="others.mountingFrame.specs.type">
-                </div>
-                <div class="input-group">
-                    <label class="whitespace-nowrap">Chất liệu / Material</label>
-                    <input type="text" data-path="others.mountingFrame.specs.material">
-                </div>
-                <div class="input-group">
-                    <label class="whitespace-nowrap">Năm lắp đặt / Install year</label>
-                    <input type="text" data-path="others.mountingFrame.specs.installYear">
-                </div>
-                <div class="input-group">
-                    <label class="whitespace-nowrap">Tình trạng tổng thể / Overall condition</label>
-                    <input type="text" data-path="others.mountingFrame.specs.overallCondition">
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100">
-            <div class="flex items-center justify-between mb-3">
-                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">Hạng
-                    mục kiểm tra</h3>
-                <button type="button" onclick="selectAllNormal('tab-7')"
-                    class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
-                    <span class="material-symbols-outlined text-[14px] group-hover:animate-bounce">done_all</span>
-                    Chọn tất cả: Đạt
-                </button>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Kiểm tra ngoại quan: khung giá đỡ chắc chắn, không cong vênh
-                    <p class="text-[11px] text-slate-500 italic">Check: frame solid, no deformation</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.mountingFrame.0.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.mountingFrame.0.remarks">
-                </div>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Kiểm tra & siết lực bu-lông liên kết khung – tường
-                    <p class="text-[11px] text-slate-500 italic">Check & torque frame-to-wall bolts</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.mountingFrame.1.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.mountingFrame.1.remarks">
-                </div>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Chụp ảnh & kiểm tra độ chắc chắn mái che Inverter (nếu có)
-                    <p class="text-[11px] text-slate-500 italic">Photo & check inverter weather cover (if present)</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.mountingFrame.2.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Có">Không Có</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.mountingFrame.2.remarks">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab-pane" id="tab-8">
-        <div class="relative mb-4 rounded-xl overflow-hidden">
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
-            </div>
-            <div class="relative px-5 py-2.5 flex items-center gap-3">
-                <span class="material-symbols-outlined text-white text-[22px]">cable</span>
-                <div>
-                    <h2 class="text-base font-headline font-bold text-white tracking-tight">8. Máng cáp & ống ruột gà
-                    </h2>
-                    <p class="text-white/70 text-[10px]">Cable Tray & Conduit (AC / DC)</p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100">
-            <div class="flex items-center justify-between mb-3">
-                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">Hạng
-                    mục kiểm tra</h3>
-                <button type="button" onclick="selectAllNormal('tab-8')"
-                    class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
-                    <span class="material-symbols-outlined text-[14px] group-hover:animate-bounce">done_all</span>
-                    Chọn tất cả: Đạt
-                </button>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Kiểm tra độ kín máng cáp AC & DC
-                    <p class="text-[11px] text-slate-500 italic">Check sealing of AC & DC cable tray</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.cableTray.0.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.cableTray.0.remarks">
-                </div>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Xịt foam làm kín các điểm hở chưa đạt tiêu chuẩn
-                    <p class="text-[11px] text-slate-500 italic">Foam-seal any non-compliant gaps</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.cableTray.1.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.cableTray.1.remarks">
-                </div>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Kiểm tra đầu nối ống ruột gà với máng cáp (không hở và lỏng)
-                    <p class="text-[11px] text-slate-500 italic">Check conduit-to-tray joints (no gap, no looseness)</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.cableTray.2.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.cableTray.2.remarks">
-                </div>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Kiểm tra kẹp dây DC & cố định đầu nối MC4
-                    <p class="text-[11px] text-slate-500 italic">DC cable clamps & MC4 connector fixation</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.cableTray.3.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="OK">OK</option>
-                        <option value="Not OK">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.cableTray.3.remarks">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 9: KẾT CẤU MÁI -->
-    <div class="tab-pane" id="tab-9">
-        <div class="relative mb-4 rounded-xl overflow-hidden">
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
-            </div>
-            <div class="relative px-5 py-2.5 flex items-center gap-3">
-                <span class="material-symbols-outlined text-white text-[22px]">home_work</span>
-                <div>
-                    <h2 class="text-base font-headline font-bold text-white tracking-tight">9. Kết cấu mái</h2>
-                    <p class="text-white/70 text-[10px]">Roof Structure</p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100">
-            <div class="flex items-center justify-between mb-3">
-                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2"><span
-                        class="material-symbols-outlined text-[18px]">fact_check</span>Các hạng mục kiểm tra / <span
-                        class="italic text-slate-500 font-normal">Inspection items</span></h3>
-                <button type="button" onclick="selectAllNormal('tab-9')"
-                    class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
-                    <span class="material-symbols-outlined text-[14px] group-hover:animate-bounce">done_all</span>
-                    Chọn tất cả: Đạt
-                </button>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Chụp ảnh tổng quan xà gồ, vì kèo dưới mái tôn khu vực lắp pin
-                    <p class="text-[11px] text-slate-500 italic">Photo of purlins & rafters under metal roof at panel
-                        area</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.roofStructure.0.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.roofStructure.0.remarks">
-                </div>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Kiểm tra mối hàn liên kết cột – vì kèo
-                    <p class="text-[11px] text-slate-500 italic">Check weld joints between columns and rafters</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.roofStructure.1.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.roofStructure.1.remarks">
-                </div>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Kiểm tra ngoại quan độ võng vì kèo
-                    <p class="text-[11px] text-slate-500 italic">Visual check of rafter deflection</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.roofStructure.2.status">
-                        <option value="" selected>-- Chọn --</option>
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.roofStructure.2.remarks">
-                </div>
-            </div>
-            <div class="checklist-item text-sm">
-                <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Kiểm tra các thanh giằng gia cố (nếu có)
-                    <p class="text-[11px] text-slate-500 italic">Check reinforcement bracing (if present)</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <select class="status-select" data-path="others.roofStructure.3.status">
-                        <option value="Đạt">Đạt</option>
-                        <option value="Không Có">Không Có</option>
-                        <option value="Không Đạt">Không Đạt</option>
-                    </select>
-                    <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
-                        data-path="others.roofStructure.3.remarks">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 10: Thermal Analysis -->
-    <div class="tab-pane" id="tab-10">
-        <div class="relative mb-4 rounded-xl overflow-hidden">
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
-            </div>
-            <div class="relative px-5 py-2.5 flex items-center gap-3">
-                <span class="material-symbols-outlined text-white text-[22px]">thermostat</span>
-                <div>
-                    <h2 class="text-base font-headline font-bold text-white tracking-tight">10. Phân tích ảnh nhiệt</h2>
-                    <p class="text-white/70 text-[10px]">Thermal Analysis</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
-                    Khu vực Tấm pin PV (PV Area)</h3>
-                <label
-                    class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer rounded-lg text-xs font-bold transition-colors">
-                    <span class="material-symbols-outlined align-middle text-[16px] mr-1">add_a_photo</span> Thêm ảnh
-                    <input type="file" accept="image/*,.BMT" multiple class="hidden" data-category="pv"
-                        onchange="handleDynamicThermalImages(this, 'previewContainer-pv')">
-                </label>
-            </div>
-            <!-- Dynamic Grid Container -->
-            <div id="previewContainer-pv" class="grid gap-4 mb-4 grid-cols-1">
-                <div
-                    class="text-center py-8 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-sm italic">
-                    Chưa có ảnh nào được chọn.
-                </div>
-            </div>
-            <div class="input-group">
-                <label>Nhận xét / Remarks</label>
-                <textarea class="w-full text-sm resize-none rounded-xl" rows="2" data-path="thermal.pv.remarks"
-                    placeholder="Nhập nhận xét về tình trạng nhiệt PV..."></textarea>
-            </div>
-        </div>
-
-        <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">Tủ
-                    AC (AC Cabinet)</h3>
-                <label
-                    class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer rounded-lg text-xs font-bold transition-colors">
-                    <span class="material-symbols-outlined align-middle text-[16px] mr-1">add_a_photo</span> Thêm ảnh
-                    <input type="file" accept="image/*,.BMT" multiple class="hidden" data-category="ac"
-                        onchange="handleDynamicThermalImages(this, 'previewContainer-ac')">
-                </label>
-            </div>
-            <!-- Dynamic Grid Container -->
-            <div id="previewContainer-ac" class="grid gap-4 mb-4 grid-cols-1">
-                <div
-                    class="text-center py-8 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-sm italic">
-                    Chưa có ảnh nào được chọn.
-                </div>
-            </div>
-            <div class="input-group">
-                <label>Nhận xét / Remarks</label>
-                <textarea class="w-full text-sm resize-none rounded-xl" rows="2" data-path="thermal.ac.remarks"
-                    placeholder="Nhập nhận xét về tình trạng nhiệt tủ AC..."></textarea>
-            </div>
-        </div>
-
-        <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
-                    Biến tần (Inverter)</h3>
-                <label
-                    class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer rounded-lg text-xs font-bold transition-colors">
-                    <span class="material-symbols-outlined align-middle text-[16px] mr-1">add_a_photo</span> Thêm ảnh
-                    <input type="file" accept="image/*,.BMT" multiple class="hidden" data-category="inverter"
-                        onchange="handleDynamicThermalImages(this, 'previewContainer-inverter')">
-                </label>
-            </div>
-            <!-- Dynamic Grid Container -->
-            <div id="previewContainer-inverter" class="grid gap-4 mb-4 grid-cols-1">
-                <div
-                    class="text-center py-8 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-sm italic">
-                    Chưa có ảnh nào được chọn.
-                </div>
-            </div>
-            <div class="input-group">
-                <label>Nhận xét / Remarks</label>
-                <textarea class="w-full text-sm resize-none rounded-xl" rows="2" data-path="thermal.inverter.remarks"
-                    placeholder="Nhập nhận xét về tình trạng nhiệt Inverter..."></textarea>
-            </div>
-        </div>
-
-
-
-
-    </div>
-
-    <!-- TAB 11: Earth Resistance -->
-    <div class="tab-pane" id="tab-11">
-        <div class="relative mb-4 rounded-xl overflow-hidden">
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
-            </div>
-            <div class="relative px-5 py-2.5 flex items-center gap-3">
-                <span class="material-symbols-outlined text-white text-[22px]">bolt</span>
-                <div>
-                    <h2 class="text-base font-headline font-bold text-white tracking-tight">11. Đo điện trở nối đất</h2>
-                    <p class="text-white/70 text-[10px]">Earth Resistance Test</p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div class="input-group-premium">
-                    <label>Cọc tiếp địa chính (Ω) <span id="er-eval-0" class="ml-2 text-xs font-bold"></span></label>
-                    <div class="input-container">
-                        <span class="material-symbols-outlined input-icon">bolt</span>
-                        <input type="number" step="0.1" data-path="earthResistance.0.value" value=""
-                            oninput="evaluateEarthResistance(0, this.value)">
-                    </div>
-                </div>
-                <div class="input-group-premium">
-                    <label>Vỏ Inverter (Ω) <span id="er-eval-1" class="ml-2 text-xs font-bold"></span></label>
-                    <div class="input-container">
-                        <span class="material-symbols-outlined input-icon">memory</span>
-                        <input type="number" step="0.1" data-path="earthResistance.1.value" value=""
-                            oninput="evaluateEarthResistance(1, this.value)">
-                    </div>
-                </div>
-                <div class="input-group-premium">
-                    <label>Vỏ tủ AC (Ω) <span id="er-eval-2" class="ml-2 text-xs font-bold"></span></label>
-                    <div class="input-container">
-                        <span class="material-symbols-outlined input-icon">ev_station</span>
-                        <input type="number" step="0.1" data-path="earthResistance.2.value" value=""
-                            oninput="evaluateEarthResistance(2, this.value)">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 12: Summary -->
-    <div class="tab-pane" id="tab-12">
-        <div class="relative mb-2 rounded-xl overflow-hidden">
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
-            </div>
-            <div class="relative px-5 py-2 flex items-center gap-3">
-                <span class="material-symbols-outlined text-white text-[22px]">assessment</span>
-                <div>
-                    <h2 class="text-base font-headline font-bold text-white tracking-tight">12. Tổng hợp kết quả & Đề
-                        xuất</h2>
-                    <p class="text-white/70 text-[10px]">Summary & Recommendations</p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-slate-100">
-            <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary mb-2 flex items-center gap-2">Các
-                hạng mục cần lưu ý</h3>
-            <table class="w-full text-left border-collapse text-xs">
-                <thead>
-                    <tr class="bg-slate-50 border-b border-slate-200">
-                        <th class="py-1 px-2 font-semibold text-slate-600 text-[10px] uppercase tracking-wider"
-                            style="width:26%">Hạng mục</th>
-                        <th class="py-1 px-2 font-semibold text-slate-600 text-[10px] uppercase tracking-wider"
-                            style="width:10%">Mức độ</th>
-                        <th class="py-1 px-2 font-semibold text-slate-600 text-[10px] uppercase tracking-wider"
-                            style="width:32%">Mô tả bất thường</th>
-                        <th class="py-1 px-2 font-semibold text-slate-600 text-[10px] uppercase tracking-wider"
-                            style="width:32%">Đề xuất & Thời hạn</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="border-b border-slate-100">
-                        <td class="py-1 px-2 font-medium text-slate-800">1. Pin PV</td>
-                        <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.0.severity">
-                                <option value="Thấp">Thấp</option>
-                                <option value="Quan trọng">Quan trọng</option>
-                                <option value="Khẩn">Khẩn</option>
-                            </select></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.0.description" value="" placeholder="Mô tả..."></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.0.action" placeholder="Đề xuất..."></td>
-                    </tr>
-                    <tr class="border-b border-slate-100">
-                        <td class="py-1 px-2 font-medium text-slate-800">2. Tủ AC Solar</td>
-                        <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.1.severity">
-                                <option value="Thấp">Thấp</option>
-                                <option value="Quan trọng">Quan trọng</option>
-                                <option value="Khẩn">Khẩn</option>
-                            </select></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.1.description" value="" placeholder="Mô tả..."></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.1.action" placeholder="Đề xuất..."></td>
-                    </tr>
-                    <tr class="border-b border-slate-100">
-                        <td class="py-1 px-2 font-medium text-slate-800">3. Biến tần</td>
-                        <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.2.severity">
-                                <option value="Thấp">Thấp</option>
-                                <option value="Quan trọng">Quan trọng</option>
-                                <option value="Khẩn">Khẩn</option>
-                            </select></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.2.description" value="" placeholder="Mô tả..."></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.2.action" placeholder="Đề xuất..."></td>
-                    </tr>
-                    <tr class="border-b border-slate-100">
-                        <td class="py-1 px-2 font-medium text-slate-800">4. Giá đỡ Tủ AC</td>
-                        <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.3.severity">
-                                <option value="Thấp">Thấp</option>
-                                <option value="Quan trọng">Quan trọng</option>
-                                <option value="Khẩn">Khẩn</option>
-                            </select></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.3.description" value="" placeholder="Mô tả..."></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.3.action" placeholder="Đề xuất..."></td>
-                    </tr>
-                    <tr class="border-b border-slate-100">
-                        <td class="py-1 px-2 font-medium text-slate-800">5. Máng cáp & Ống ruột gà</td>
-                        <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.4.severity">
-                                <option value="Thấp">Thấp</option>
-                                <option value="Quan trọng">Quan trọng</option>
-                                <option value="Khẩn">Khẩn</option>
-                            </select></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.4.description" value="" placeholder="Mô tả..."></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.4.action" placeholder="Đề xuất..."></td>
-                    </tr>
-                    <tr class="border-b border-slate-100">
-                        <td class="py-1 px-2 font-medium text-slate-800">6. Kết cấu mái</td>
-                        <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.5.severity">
-                                <option value="Thấp">Thấp</option>
-                                <option value="Quan trọng">Quan trọng</option>
-                                <option value="Khẩn">Khẩn</option>
-                            </select></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.5.description" value="" placeholder="Mô tả..."></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.5.action" placeholder="Đề xuất..."></td>
-                    </tr>
-                    <tr class="border-b border-slate-100">
-                        <td class="py-1 px-2 font-medium text-slate-800">7. Tiếp địa</td>
-                        <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs" data-path="summary.6.severity">
-                                <option value="Thấp">Thấp</option>
-                                <option value="Quan trọng">Quan trọng</option>
-                                <option value="Khẩn">Khẩn</option>
-                            </select></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.6.description" value="" placeholder="Mô tả..."></td>
-                        <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
-                                data-path="summary.6.action" placeholder="Đề xuất..."></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="input-group mt-3">
-                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Nhận xét tổng quan
-                    (Overall Comments)</label>
-                <textarea id="overallComments" data-path="overallComments" rows="2"
-                    class="w-full bg-surface-container-low border border-slate-200 focus:border-primary text-xs font-medium py-2 px-3 rounded-xl transition-colors resize-y custom-scrollbar"
-                    placeholder="Ví dụ: Hệ thống hoạt động bình thường, đề nghị tiếp tục phát điện..."></textarea>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 13: Export -->
-    <div class="tab-pane" id="tab-13">
-        <div class="relative mb-2 rounded-xl overflow-hidden">
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
-            </div>
-            <div class="relative px-5 py-2 flex items-center gap-3">
-                <span class="material-symbols-outlined text-white text-[22px]">draw</span>
-                <div>
-                    <h2 class="text-base font-headline font-bold text-white tracking-tight">13. Ký & Xuất Báo Cáo</h2>
-                    <p class="text-white/70 text-[10px]">Review, Sign & Export PDF</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-            <!-- Technician Signature Card -->
-            <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col">
-                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px]">draw</span>Xác nhận Kỹ thuật viên
-                </h3>
-
-                <div id="sigPreviewContainer" class="hidden mb-3 w-full flex flex-col items-center">
-                    <img id="sigPreviewImg"
-                        class="max-h-24 object-contain bg-slate-50 rounded-xl border border-slate-200 p-2 shadow-sm"
-                        src="" alt="Signature Preview">
-                    <button type="button" onclick="removeSignature()"
-                        class="mt-2 text-[11px] font-bold text-red-500 uppercase tracking-wider hover:text-red-700 transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[14px]">delete</span> Xóa chữ ký
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 gap-2 mb-4">
-                    <div class="input-group-premium">
-                        <label>Họ tên Kỹ thuật viên / Full Name</label>
-                        <div class="input-container">
-                            <span class="material-symbols-outlined input-icon">person</span>
-                            <input type="text" data-path="technicianName" placeholder="Nhập họ tên kỹ thuật viên...">
+                <!-- TAB 7, 8, 9: Shortened checklists for these -->
+                <div class="tab-pane" id="tab-7">
+                    <div class="relative mb-4 rounded-xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
+                        </div>
+                        <div class="relative px-5 py-2.5 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-[22px]">view_module</span>
+                            <div>
+                                <h2 class="text-base font-headline font-bold text-white tracking-tight">7. Khung giá đỡ
+                                    Tủ
+                                    AC/Inverter</h2>
+                                <p class="text-white/70 text-[10px]">AC/Inverter Mounting Frame</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="input-group-premium">
-                        <label>Chức vụ / Position</label>
-                        <div class="input-container">
-                            <span class="material-symbols-outlined input-icon">badge</span>
-                            <input type="text" data-path="technicianPosition" placeholder="VD: Kỹ thuật viên O&M">
+
+                    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                                Thông số kỹ thuật / <span
+                                    class="italic font-normal text-slate-500">Specifications</span>
+                            </h3>
+                            <button type="button" onclick="showSampleModal('structure_ac')"
+                                class="px-3 py-1.5 bg-blue-50 text-primary border border-blue-100 hover:bg-primary hover:text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
+                                <span class="material-symbols-outlined text-[14px]">library_add</span>
+                                Chọn mẫu Khung AC
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-2 lg:grid-cols-[1.1fr_1.1fr_1.1fr_1.7fr] gap-3">
+                            <div class="input-group">
+                                <label class="whitespace-nowrap">Loại kết cấu / Structure type</label>
+                                <input type="text" data-path="others.mountingFrame.specs.type">
+                            </div>
+                            <div class="input-group">
+                                <label class="whitespace-nowrap">Chất liệu / Material</label>
+                                <input type="text" data-path="others.mountingFrame.specs.material">
+                            </div>
+                            <div class="input-group">
+                                <label class="whitespace-nowrap">Năm lắp đặt / Install year</label>
+                                <input type="text" data-path="others.mountingFrame.specs.installYear">
+                            </div>
+                            <div class="input-group">
+                                <label class="whitespace-nowrap">Tình trạng tổng thể / Overall condition</label>
+                                <input type="text" data-path="others.mountingFrame.specs.overallCondition">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                                Hạng
+                                mục kiểm tra</h3>
+                            <button type="button" onclick="selectAllNormal('tab-7')"
+                                class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
+                                <span
+                                    class="material-symbols-outlined text-[14px] group-hover:animate-bounce">done_all</span>
+                                Chọn tất cả: Đạt
+                            </button>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Kiểm tra ngoại quan: khung giá đỡ chắc chắn, không cong vênh
+                                <p class="text-[11px] text-slate-500 italic">Check: frame solid, no deformation</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.mountingFrame.checklist.0.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.mountingFrame.checklist.0.remarks">
+                            </div>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Kiểm tra & siết lực bu-lông liên kết khung – tường
+                                <p class="text-[11px] text-slate-500 italic">Check & torque frame-to-wall bolts</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.mountingFrame.checklist.1.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.mountingFrame.checklist.1.remarks">
+                            </div>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Chụp ảnh & kiểm tra độ chắc chắn mái che Inverter (nếu có)
+                                <p class="text-[11px] text-slate-500 italic">Photo & check inverter weather cover (if
+                                    present)</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.mountingFrame.checklist.2.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Có">Không Có</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.mountingFrame.checklist.2.remarks">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-auto">
-                    <label id="sigUploadBox"
-                        class="w-full py-6 border-2 border-dashed border-slate-200 rounded-xl cursor-pointer hover:bg-primary/5 hover:border-primary/40 transition-all flex flex-col items-center justify-center gap-2">
-                        <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-xl">draw</span>
+                <div class="tab-pane" id="tab-8">
+                    <div class="relative mb-4 rounded-xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
                         </div>
-                        <div class="text-[11px] font-bold text-slate-700 uppercase">Tải chữ ký Kỹ thuật</div>
-                        <input type="file" id="signatureInput" accept="image/*" class="hidden"
-                            onchange="handleSignatureUpload(this)">
-                    </label>
-                </div>
-            </div>
-
-            <!-- Client Signature Card -->
-            <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col">
-                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px]">how_to_reg</span>Xác nhận Khách hàng
-                </h3>
-
-                <div id="clientSigPreviewContainer" class="hidden mb-3 w-full flex flex-col items-center">
-                    <img id="clientSigPreviewImg"
-                        class="max-h-24 object-contain bg-slate-50 rounded-xl border border-slate-200 p-2 shadow-sm"
-                        src="" alt="Client Signature Preview">
-                    <button type="button" onclick="removeClientSignature()"
-                        class="mt-2 text-[11px] font-bold text-red-500 uppercase tracking-wider hover:text-red-700 transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[14px]">delete</span> Xóa chữ ký
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 gap-2 mb-4">
-                    <div class="input-group-premium">
-                        <label>Họ tên đại diện / Client Name</label>
-                        <div class="input-container">
-                            <span class="material-symbols-outlined input-icon">person</span>
-                            <input type="text" data-path="clientName" placeholder="Nhập họ tên đại diện khách hàng...">
+                        <div class="relative px-5 py-2.5 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-[22px]">cable</span>
+                            <div>
+                                <h2 class="text-base font-headline font-bold text-white tracking-tight">8. Máng cáp &
+                                    ống ruột gà
+                                </h2>
+                                <p class="text-white/70 text-[10px]">Cable Tray & Conduit (AC / DC)</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="input-group-premium">
-                        <label>Chức vụ / Position</label>
-                        <div class="input-container">
-                            <span class="material-symbols-outlined input-icon">badge</span>
-                            <input type="text" data-path="clientPosition" placeholder="VD: Quản lý nhà máy">
+                    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                                Hạng
+                                mục kiểm tra</h3>
+                            <button type="button" onclick="selectAllNormal('tab-8')"
+                                class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
+                                <span
+                                    class="material-symbols-outlined text-[14px] group-hover:animate-bounce">done_all</span>
+                                Chọn tất cả: Đạt
+                            </button>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Kiểm tra độ kín máng cáp AC & DC
+                                <p class="text-[11px] text-slate-500 italic">Check sealing of AC & DC cable tray</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.cableTray.0.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.cableTray.0.remarks">
+                            </div>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Xịt foam làm kín các điểm hở chưa đạt tiêu chuẩn
+                                <p class="text-[11px] text-slate-500 italic">Foam-seal any non-compliant gaps</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.cableTray.1.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.cableTray.1.remarks">
+                            </div>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Kiểm tra đầu nối ống ruột gà với máng cáp (không hở và lỏng)
+                                <p class="text-[11px] text-slate-500 italic">Check conduit-to-tray joints (no gap, no
+                                    looseness)</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.cableTray.2.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.cableTray.2.remarks">
+                            </div>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Kiểm tra kẹp dây DC & cố định đầu nối MC4
+                                <p class="text-[11px] text-slate-500 italic">DC cable clamps & MC4 connector fixation
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.cableTray.3.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="OK">OK</option>
+                                    <option value="Not OK">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.cableTray.3.remarks">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-auto">
-                    <label id="clientSigUploadBox"
-                        class="w-full py-6 border-2 border-dashed border-slate-200 rounded-xl cursor-pointer hover:bg-primary/5 hover:border-primary/40 transition-all flex flex-col items-center justify-center gap-2">
-                        <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-xl">id_card</span>
+                <!-- TAB 9: KẾT CẤU MÁI -->
+                <div class="tab-pane" id="tab-9">
+                    <div class="relative mb-4 rounded-xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
                         </div>
-                        <div class="text-[11px] font-bold text-slate-700 uppercase">Tải chữ ký Khách hàng</div>
-                        <input type="file" id="clientSignatureInput" accept="image/*" class="hidden"
-                            onchange="handleClientSignatureUpload(this)">
-                    </label>
+                        <div class="relative px-5 py-2.5 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-[22px]">home_work</span>
+                            <div>
+                                <h2 class="text-base font-headline font-bold text-white tracking-tight">9. Kết cấu mái
+                                </h2>
+                                <p class="text-white/70 text-[10px]">Roof Structure</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[18px]">fact_check</span>Các hạng mục kiểm
+                                tra / <span class="italic text-slate-500 font-normal">Inspection items</span></h3>
+                            <button type="button" onclick="selectAllNormal('tab-9')"
+                                class="px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20 hover:text-white transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
+                                <span
+                                    class="material-symbols-outlined text-[14px] group-hover:animate-bounce">done_all</span>
+                                Chọn tất cả: Đạt
+                            </button>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Chụp ảnh tổng quan xà gồ, vì kèo dưới mái tôn khu vực lắp pin
+                                <p class="text-[11px] text-slate-500 italic">Photo of purlins & rafters under metal roof
+                                    at panel
+                                    area</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.roofStructure.0.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.roofStructure.0.remarks">
+                            </div>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Kiểm tra mối hàn liên kết cột – vì kèo
+                                <p class="text-[11px] text-slate-500 italic">Check weld joints between columns and
+                                    rafters</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.roofStructure.1.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.roofStructure.1.remarks">
+                            </div>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Kiểm tra ngoại quan độ võng vì kèo
+                                <p class="text-[11px] text-slate-500 italic">Visual check of rafter deflection</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.roofStructure.2.status">
+                                    <option value="" selected>-- Chọn --</option>
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.roofStructure.2.remarks">
+                            </div>
+                        </div>
+                        <div class="checklist-item text-sm">
+                            <div class="flex-1 font-semibold text-slate-800 tracking-tight">
+                                Kiểm tra các thanh giằng gia cố (nếu có)
+                                <p class="text-[11px] text-slate-500 italic">Check reinforcement bracing (if present)
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <select class="status-select" data-path="others.roofStructure.3.status">
+                                    <option value="Đạt">Đạt</option>
+                                    <option value="Không Có">Không Có</option>
+                                    <option value="Không Đạt">Không Đạt</option>
+                                </select>
+                                <input type="text" placeholder="Ghi chú..." class="w-40 text-sm"
+                                    data-path="others.roofStructure.3.remarks">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    </form>
-    </main>
+
+                <!-- TAB 10: Thermal Analysis -->
+                <div class="tab-pane" id="tab-10">
+                    <div class="relative mb-4 rounded-xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
+                        </div>
+                        <div class="relative px-5 py-2.5 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-[22px]">thermostat</span>
+                            <div>
+                                <h2 class="text-base font-headline font-bold text-white tracking-tight">10. Phân tích
+                                    ảnh nhiệt</h2>
+                                <p class="text-white/70 text-[10px]">Thermal Analysis</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
+                                Khu vực Tấm pin PV (PV Area)</h3>
+                            <label
+                                class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer rounded-lg text-xs font-bold transition-colors">
+                                <span class="material-symbols-outlined align-middle text-[16px] mr-1">add_a_photo</span>
+                                Thêm ảnh
+                                <input type="file" accept="image/*,.BMT" multiple class="hidden" data-category="pv"
+                                    onchange="handleDynamicThermalImages(this, 'previewContainer-pv')">
+                            </label>
+                        </div>
+                        <!-- Dynamic Grid Container -->
+                        <div id="previewContainer-pv" class="grid gap-4 mb-4 grid-cols-1">
+                            <div
+                                class="text-center py-8 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-sm italic">
+                                Chưa có ảnh nào được chọn.
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Nhận xét / Remarks</label>
+                            <textarea class="w-full text-sm resize-none rounded-xl" rows="2"
+                                data-path="thermal.pv.remarks"
+                                placeholder="Nhập nhận xét về tình trạng nhiệt PV..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
+                                Tủ
+                                AC (AC Cabinet)</h3>
+                            <label
+                                class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer rounded-lg text-xs font-bold transition-colors">
+                                <span class="material-symbols-outlined align-middle text-[16px] mr-1">add_a_photo</span>
+                                Thêm ảnh
+                                <input type="file" accept="image/*,.BMT" multiple class="hidden" data-category="ac"
+                                    onchange="handleDynamicThermalImages(this, 'previewContainer-ac')">
+                            </label>
+                        </div>
+                        <!-- Dynamic Grid Container -->
+                        <div id="previewContainer-ac" class="grid gap-4 mb-4 grid-cols-1">
+                            <div
+                                class="text-center py-8 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-sm italic">
+                                Chưa có ảnh nào được chọn.
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Nhận xét / Remarks</label>
+                            <textarea class="w-full text-sm resize-none rounded-xl" rows="2"
+                                data-path="thermal.ac.remarks"
+                                placeholder="Nhập nhận xét về tình trạng nhiệt tủ AC..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
+                                Biến tần (Inverter)</h3>
+                            <label
+                                class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer rounded-lg text-xs font-bold transition-colors">
+                                <span class="material-symbols-outlined align-middle text-[16px] mr-1">add_a_photo</span>
+                                Thêm ảnh
+                                <input type="file" accept="image/*,.BMT" multiple class="hidden"
+                                    data-category="inverter"
+                                    onchange="handleDynamicThermalImages(this, 'previewContainer-inverter')">
+                            </label>
+                        </div>
+                        <!-- Dynamic Grid Container -->
+                        <div id="previewContainer-inverter" class="grid gap-4 mb-4 grid-cols-1">
+                            <div
+                                class="text-center py-8 border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-sm italic">
+                                Chưa có ảnh nào được chọn.
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Nhận xét / Remarks</label>
+                            <textarea class="w-full text-sm resize-none rounded-xl" rows="2"
+                                data-path="thermal.inverter.remarks"
+                                placeholder="Nhập nhận xét về tình trạng nhiệt Inverter..."></textarea>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+                <!-- TAB 11: Earth Resistance -->
+                <div class="tab-pane" id="tab-11">
+                    <div class="relative mb-4 rounded-xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
+                        </div>
+                        <div class="relative px-5 py-2.5 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-[22px]">bolt</span>
+                            <div>
+                                <h2 class="text-base font-headline font-bold text-white tracking-tight">11. Đo điện trở
+                                    nối đất</h2>
+                                <p class="text-white/70 text-[10px]">Earth Resistance Test</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="input-group-premium">
+                                <label>Cọc tiếp địa chính (Ω) <span id="er-eval-0"
+                                        class="ml-2 text-xs font-bold"></span></label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">bolt</span>
+                                    <input type="number" step="0.1" data-path="earthResistance.0.value" value=""
+                                        oninput="evaluateEarthResistance(0, this.value)">
+                                </div>
+                            </div>
+                            <div class="input-group-premium">
+                                <label>Vỏ Inverter (Ω) <span id="er-eval-1"
+                                        class="ml-2 text-xs font-bold"></span></label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">memory</span>
+                                    <input type="number" step="0.1" data-path="earthResistance.1.value" value=""
+                                        oninput="evaluateEarthResistance(1, this.value)">
+                                </div>
+                            </div>
+                            <div class="input-group-premium">
+                                <label>Vỏ tủ AC (Ω) <span id="er-eval-2" class="ml-2 text-xs font-bold"></span></label>
+                                <div class="input-container">
+                                    <span class="material-symbols-outlined input-icon">ev_station</span>
+                                    <input type="number" step="0.1" data-path="earthResistance.2.value" value=""
+                                        oninput="evaluateEarthResistance(2, this.value)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 12: Summary -->
+                <div class="tab-pane" id="tab-12">
+                    <div class="relative mb-2 rounded-xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
+                        </div>
+                        <div class="relative px-5 py-2 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-[22px]">assessment</span>
+                            <div>
+                                <h2 class="text-base font-headline font-bold text-white tracking-tight">12. Tổng hợp kết
+                                    quả & Đề
+                                    xuất</h2>
+                                <p class="text-white/70 text-[10px]">Summary & Recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-slate-100">
+                        <h3
+                            class="text-[13px] font-bold uppercase tracking-widest text-primary mb-2 flex items-center gap-2">
+                            Các
+                            hạng mục cần lưu ý</h3>
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-200">
+                                    <th class="py-1 px-2 font-semibold text-slate-600 text-[10px] uppercase tracking-wider"
+                                        style="width:24%">Hạng mục</th>
+                                    <th class="py-1 px-2 font-semibold text-slate-600 text-[10px] uppercase tracking-wider"
+                                        style="width:18%">Mức độ</th>
+                                    <th class="py-1 px-2 font-semibold text-slate-600 text-[10px] uppercase tracking-wider"
+                                        style="width:29%">Mô tả bất thường</th>
+                                    <th class="py-1 px-2 font-semibold text-slate-600 text-[10px] uppercase tracking-wider"
+                                        style="width:29%">Đề xuất & Thời hạn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-100">
+                                    <td class="py-1 px-2 font-medium text-slate-800">1. Pin PV</td>
+                                    <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs"
+                                            data-path="summary.0.severity" onchange="handleSummarySeverityChange(this)">
+                                            <option value="Thấp">Thấp</option>
+                                            <option value="Quan trọng">Quan trọng</option>
+                                            <option value="Khẩn">Khẩn</option>
+                                        </select></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.0.description" value="" placeholder="Mô tả..."></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.0.action" placeholder="Đề xuất..."></td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="py-1 px-2 font-medium text-slate-800">2. Tủ AC Solar</td>
+                                    <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs"
+                                            data-path="summary.1.severity" onchange="handleSummarySeverityChange(this)">
+                                            <option value="Thấp">Thấp</option>
+                                            <option value="Quan trọng">Quan trọng</option>
+                                            <option value="Khẩn">Khẩn</option>
+                                        </select></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.1.description" value="" placeholder="Mô tả..."></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.1.action" placeholder="Đề xuất..."></td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="py-1 px-2 font-medium text-slate-800">3. Biến tần</td>
+                                    <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs"
+                                            data-path="summary.2.severity" onchange="handleSummarySeverityChange(this)">
+                                            <option value="Thấp">Thấp</option>
+                                            <option value="Quan trọng">Quan trọng</option>
+                                            <option value="Khẩn">Khẩn</option>
+                                        </select></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.2.description" value="" placeholder="Mô tả..."></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.2.action" placeholder="Đề xuất..."></td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="py-1 px-2 font-medium text-slate-800">4. Giá đỡ Tủ AC</td>
+                                    <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs"
+                                            data-path="summary.3.severity" onchange="handleSummarySeverityChange(this)">
+                                            <option value="Thấp">Thấp</option>
+                                            <option value="Quan trọng">Quan trọng</option>
+                                            <option value="Khẩn">Khẩn</option>
+                                        </select></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.3.description" value="" placeholder="Mô tả..."></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.3.action" placeholder="Đề xuất..."></td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="py-1 px-2 font-medium text-slate-800">5. Máng cáp & Ống ruột gà</td>
+                                    <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs"
+                                            data-path="summary.4.severity" onchange="handleSummarySeverityChange(this)">
+                                            <option value="Thấp">Thấp</option>
+                                            <option value="Quan trọng">Quan trọng</option>
+                                            <option value="Khẩn">Khẩn</option>
+                                        </select></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.4.description" value="" placeholder="Mô tả..."></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.4.action" placeholder="Đề xuất..."></td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="py-1 px-2 font-medium text-slate-800">6. Kết cấu mái</td>
+                                    <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs"
+                                            data-path="summary.5.severity" onchange="handleSummarySeverityChange(this)">
+                                            <option value="Thấp">Thấp</option>
+                                            <option value="Quan trọng">Quan trọng</option>
+                                            <option value="Khẩn">Khẩn</option>
+                                        </select></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.5.description" value="" placeholder="Mô tả..."></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.5.action" placeholder="Đề xuất..."></td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="py-1 px-2 font-medium text-slate-800">7. Tiếp địa</td>
+                                    <td class="py-1 px-2"><select class="w-full h-8 px-1 text-xs"
+                                            data-path="summary.6.severity" onchange="handleSummarySeverityChange(this)">
+                                            <option value="Thấp">Thấp</option>
+                                            <option value="Quan trọng">Quan trọng</option>
+                                            <option value="Khẩn">Khẩn</option>
+                                        </select></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.6.description" value="" placeholder="Mô tả..."></td>
+                                    <td class="py-1 px-2"><input type="text" class="w-full text-xs h-8 px-2"
+                                            data-path="summary.6.action" placeholder="Đề xuất..."></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="input-group mt-3">
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Nhận xét tổng
+                                quan
+                                (Overall Comments)</label>
+                            <textarea id="overallComments" data-path="overallComments" rows="2"
+                                class="w-full bg-surface-container-low border border-slate-200 focus:border-primary text-xs font-medium py-2 px-3 rounded-xl transition-colors resize-y custom-scrollbar"
+                                placeholder="Ví dụ: Hệ thống hoạt động bình thường, đề nghị tiếp tục phát điện..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 13: Export -->
+                <div class="tab-pane" id="tab-13">
+                    <div class="relative mb-2 rounded-xl overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-400 via-orange-400 to-blue-600 bg-[length:200%_100%] animate-shimmer opacity-90">
+                        </div>
+                        <div class="relative px-5 py-2 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-[22px]">draw</span>
+                            <div>
+                                <h2 class="text-base font-headline font-bold text-white tracking-tight">13. Ký & Xuất
+                                    Báo Cáo</h2>
+                                <p class="text-white/70 text-[10px]">Review, Sign & Export PDF</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                        <!-- Technician Signature Card -->
+                        <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col">
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">draw</span>Xác nhận Kỹ thuật viên
+                            </h3>
+
+                            <div id="sigPreviewContainer" class="hidden mb-3 w-full flex flex-col items-center">
+                                <img id="sigPreviewImg"
+                                    class="max-h-24 object-contain bg-slate-50 rounded-xl border border-slate-200 p-2 shadow-sm"
+                                    src="" alt="Signature Preview">
+                                <button type="button" onclick="removeSignature()"
+                                    class="mt-2 text-[11px] font-bold text-red-500 uppercase tracking-wider hover:text-red-700 transition-colors flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[14px]">delete</span> Xóa chữ ký
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-2 mb-4">
+                                <div class="input-group-premium">
+                                    <label>Họ tên Kỹ thuật viên / Full Name</label>
+                                    <div class="input-container">
+                                        <span class="material-symbols-outlined input-icon">person</span>
+                                        <input type="text" data-path="technicianName"
+                                            placeholder="Nhập họ tên kỹ thuật viên...">
+                                    </div>
+                                </div>
+                                <div class="input-group-premium">
+                                    <label>Chức vụ / Position</label>
+                                    <div class="input-container">
+                                        <span class="material-symbols-outlined input-icon">badge</span>
+                                        <input type="text" data-path="technicianPosition"
+                                            placeholder="VD: Kỹ thuật viên O&M">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-auto">
+                                <label id="sigUploadBox"
+                                    class="w-full py-6 border-2 border-dashed border-slate-200 rounded-xl cursor-pointer hover:bg-primary/5 hover:border-primary/40 transition-all flex flex-col items-center justify-center gap-2">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-xl">draw</span>
+                                    </div>
+                                    <div class="text-[11px] font-bold text-slate-700 uppercase">Tải chữ ký Kỹ thuật
+                                    </div>
+                                    <input type="file" id="signatureInput" accept="image/*" class="hidden"
+                                        onchange="handleSignatureUpload(this)">
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Client Signature Card -->
+                        <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col">
+                            <h3
+                                class="text-[13px] font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">how_to_reg</span>Xác nhận Khách hàng
+                            </h3>
+
+                            <div id="clientSigPreviewContainer" class="hidden mb-3 w-full flex flex-col items-center">
+                                <img id="clientSigPreviewImg"
+                                    class="max-h-24 object-contain bg-slate-50 rounded-xl border border-slate-200 p-2 shadow-sm"
+                                    src="" alt="Client Signature Preview">
+                                <button type="button" onclick="removeClientSignature()"
+                                    class="mt-2 text-[11px] font-bold text-red-500 uppercase tracking-wider hover:text-red-700 transition-colors flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[14px]">delete</span> Xóa chữ ký
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-2 mb-4">
+                                <div class="input-group-premium">
+                                    <label>Họ tên đại diện / Client Name</label>
+                                    <div class="input-container">
+                                        <span class="material-symbols-outlined input-icon">person</span>
+                                        <input type="text" data-path="clientName"
+                                            placeholder="Nhập họ tên đại diện khách hàng...">
+                                    </div>
+                                </div>
+                                <div class="input-group-premium">
+                                    <label>Chức vụ / Position</label>
+                                    <div class="input-container">
+                                        <span class="material-symbols-outlined input-icon">badge</span>
+                                        <input type="text" data-path="clientPosition" placeholder="VD: Quản lý nhà máy">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-auto">
+                                <label id="clientSigUploadBox"
+                                    class="w-full py-6 border-2 border-dashed border-slate-200 rounded-xl cursor-pointer hover:bg-primary/5 hover:border-primary/40 transition-all flex flex-col items-center justify-center gap-2">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-xl">id_card</span>
+                                    </div>
+                                    <div class="text-[11px] font-bold text-slate-700 uppercase">Tải chữ ký Khách hàng
+                                    </div>
+                                    <input type="file" id="clientSignatureInput" accept="image/*" class="hidden"
+                                        onchange="handleClientSignatureUpload(this)">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
     </div>
 
     <div id="toast"

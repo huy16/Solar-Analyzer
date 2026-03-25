@@ -201,10 +201,10 @@ function showToast(message) {
     const toastMsg = document.getElementById('toast-msg');
     if (!toast || !toastMsg) return;
     toastMsg.textContent = message;
-    
+
     // Clear any existing timeout
     if (window.toastTimeout) clearTimeout(window.toastTimeout);
-    
+
     toast.classList.add('show');
     window.toastTimeout = setTimeout(() => {
         toast.classList.remove('show');
@@ -219,13 +219,13 @@ function selectAllNormal(tabId) {
     if (!tab) return;
     const selects = tab.querySelectorAll('select');
     let changed = false;
-    
+
     selects.forEach(select => {
         // Find "OK" or "Đạt" or "Normal" value
-        const targetValue = Array.from(select.options).find(opt => 
+        const targetValue = Array.from(select.options).find(opt =>
             opt.value === 'OK' || opt.value === 'Đạt' || opt.value === 'Normal'
         );
-        
+
         if (targetValue && select.value !== targetValue.value) {
             select.value = targetValue.value;
             // Apply color immediately
@@ -235,7 +235,7 @@ function selectAllNormal(tabId) {
             changed = true;
         }
     });
-    
+
     if (changed) {
         updateSidebarStatus();
         showToast('Đã chọn thành công tất cả hạng mục là: Đạt');
@@ -273,6 +273,28 @@ document.addEventListener('input', (e) => {
  */
 function refreshAllSelectColors() {
     document.querySelectorAll('select').forEach(updateSelectColor);
+}
+
+/**
+ * Automatically set Description to "Không" if Severity is "Thấp"
+ */
+function handleSummarySeverityChange(select) {
+    const path = select.getAttribute('data-path'); // e.g., "summary.0.severity"
+    if (!path || !path.includes('severity')) return;
+
+    const descPath = path.replace('severity', 'description');
+    const descInput = document.querySelector(`[data-path="${descPath}"]`);
+
+    if (descInput) {
+        if (select.value === 'Thấp') {
+            descInput.value = 'Không';
+        } else {
+            // Clear for higher priority
+            descInput.value = '';
+        }
+        // Trigger input event to ensure data binding/auto-save picks it up
+        descInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
 }
 
 // Data Binding utility
@@ -357,11 +379,11 @@ async function compressImage(file, maxWidth = 1600, maxHeight = 1600) {
                 canvas.width = width;
                 canvas.height = height;
                 const ctx = canvas.getContext('2d');
-                
+
                 // Fill with white to prevent black background for transparent PNGs
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fillRect(0, 0, width, height);
-                
+
                 ctx.drawImage(img, 0, 0, width, height);
                 canvas.toBlob((blob) => {
                     resolve(blob || file);
@@ -376,7 +398,7 @@ function evaluateEarthResistance(index, value) {
     const evalSpan = document.getElementById(`er-eval-${index}`);
     if (!evalSpan) return;
     const val = parseFloat(value);
-    
+
     let evaluation = "";
     if (isNaN(val) || value === "") {
         evalSpan.textContent = "";
@@ -424,7 +446,7 @@ async function uploadFiles() {
 
     // Generate the report with or without BMT files
 
-    
+
     if (statusDiv) {
         statusDiv.classList.remove('hidden');
         statusDiv.className = 'status processing';
@@ -440,13 +462,13 @@ async function uploadFiles() {
     } else {
         showToast('Đang khởi tạo tạo báo cáo... Vui lòng đợi...');
     }
-    
+
     uploadBtn.disabled = true;
     uploadBtn.innerHTML = '⏳ Processing...';
 
     const formData = new FormData();
     const reportTitle = document.getElementById('reportTitle') ? document.getElementById('reportTitle').value : "BIÊN BẢN KIỂM TRA – BẢO TRÌ – BẢO DƯỠNG";
-    
+
     formData.append('reportTitle', reportTitle);
     formData.append('omData', JSON.stringify(finalOmData)); // Append full data object
 
@@ -456,14 +478,14 @@ async function uploadFiles() {
             for (const file of fileArray) {
                 let prefix = category;
                 if (category === 'ac') prefix = 'cabinet';
-                
+
                 // Only compress standard images, skip .BMT as it contains raw metadata
                 let fileToUpload = file;
                 const isBMT = file.name.toUpperCase().endsWith('.BMT');
                 if (!isBMT && file.type.startsWith('image/')) {
                     fileToUpload = await compressImage(file);
                 }
-                
+
                 formData.append('files', fileToUpload, `${prefix}_${file.name}`);
             }
         }
@@ -559,7 +581,7 @@ async function uploadFiles() {
         showToast('Lỗi kết nối: ' + error.message, 'error');
     } finally {
         uploadBtn.disabled = false;
-        uploadBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span> <span class="relative z-10">Xuất báo cáo PDF</span>'; 
+        uploadBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span> <span class="relative z-10">Xuất báo cáo PDF</span>';
     }
 }
 
@@ -581,7 +603,7 @@ function handleDynamicThermalImages(input, containerId) {
 
     // Append new files to our global state
     window.dynamicThermalFiles[category] = window.dynamicThermalFiles[category].concat(newFiles);
-    
+
     // Warning for even numbers (layout issue)
     if (window.dynamicThermalFiles[category].length % 2 === 0) {
         showToast('Cảnh báo: Số lượng ảnh đang là số chẵn. Nên chọn số lẻ (1, 3, 5...) để tránh lỗi layout nhận xét dính footer.');
@@ -600,12 +622,45 @@ function removeDynamicThermalImage(category, index, containerId) {
     }
 }
 
+/**
+ * Extracts the first JPEG image from a BMT binary buffer (client-side).
+ * Used for real-time preview of Testo thermal files.
+ */
+function extractJpegFromBmt(buffer) {
+    const jpegStartMarker = [0xFF, 0xD8];
+    const jpegEndMarker = [0xFF, 0xD9];
+
+    function findMarker(buf, marker, offset = 0) {
+        for (let i = offset; i < buf.length - 1; i++) {
+            if (buf[i] === marker[0] && buf[i + 1] === marker[1]) return i;
+        }
+        return -1;
+    }
+
+    const startIdx = findMarker(buffer, jpegStartMarker);
+    if (startIdx === -1) return null;
+
+    const endIdx = findMarker(buffer, jpegEndMarker, startIdx + 2);
+    if (endIdx === -1) return null;
+
+    const jpegBuffer = buffer.subarray(startIdx, endIdx + 2);
+
+    // Convert to base64
+    let binary = '';
+    const bytes = new Uint8Array(jpegBuffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+}
+
 function renderDynamicThermalGrid(category, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     const files = window.dynamicThermalFiles[category];
-    
+
     // Reset classes
     container.className = 'grid gap-4 mb-4';
     container.innerHTML = '';
@@ -636,17 +691,44 @@ function renderDynamicThermalGrid(category, containerId) {
 
         if (isImage) {
             const img = document.createElement('img');
-            img.className = 'w-full h-full object-cover aspect-video';
+            img.className = 'w-full h-full object-contain';
             const reader = new FileReader();
             reader.onload = (e) => { img.src = e.target.result; };
             reader.readAsDataURL(file);
             itemBox.appendChild(img);
-        } else {
-            // Icon for non-image files like .BMT
+        } else if (isBMT) {
+            // Preview for .BMT files
+            const img = document.createElement('img');
+            img.className = 'w-full h-full object-contain hidden';
             const iconWrap = document.createElement('div');
             iconWrap.className = 'flex flex-col items-center justify-center p-4 text-slate-500';
             iconWrap.innerHTML = `
-                <span class="material-symbols-outlined text-4xl mb-2">${isBMT ? 'thermostat' : 'insert_drive_file'}</span>
+                <span class="material-symbols-outlined text-4xl mb-2 animate-pulse text-primary/40">thermostat</span>
+                <span class="text-[10px] font-semibold uppercase truncate w-24 text-center">${file.name}</span>
+            `;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const buffer = new Uint8Array(e.target.result);
+                const b64 = extractJpegFromBmt(buffer);
+                if (b64) {
+                    img.src = 'data:image/jpeg;base64,' + b64;
+                    img.classList.remove('hidden');
+                    iconWrap.classList.add('hidden');
+                } else {
+                    // Fail fallback: change icon opacity or show error
+                    iconWrap.querySelector('span').classList.remove('animate-pulse', 'text-primary/40');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+            itemBox.appendChild(img);
+            itemBox.appendChild(iconWrap);
+        } else {
+            // Icon for other non-image files
+            const iconWrap = document.createElement('div');
+            iconWrap.className = 'flex flex-col items-center justify-center p-4 text-slate-500';
+            iconWrap.innerHTML = `
+                <span class="material-symbols-outlined text-4xl mb-2">insert_drive_file</span>
                 <span class="text-xs font-semibold uppercase truncate w-24 text-center">${file.name}</span>
             `;
             itemBox.appendChild(iconWrap);
@@ -661,7 +743,7 @@ function renderDynamicThermalGrid(category, containerId) {
             e.preventDefault();
             removeDynamicThermalImage(category, index, containerId);
         };
-        
+
         itemBox.appendChild(delBtn);
         container.appendChild(itemBox);
     });
@@ -682,14 +764,14 @@ async function handleSignatureUpload(input) {
     }
 
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         const base64 = e.target.result;
         window.technicianSignatureBase64 = base64; // Store base64 string globally
-        
+
         const previewImg = document.getElementById('sigPreviewImg');
         const previewContainer = document.getElementById('sigPreviewContainer');
         const uploadBox = document.getElementById('sigUploadBox');
-        
+
         previewImg.src = base64;
         previewContainer.classList.remove('hidden');
         uploadBox.classList.add('hidden');
@@ -719,18 +801,18 @@ async function handleClientSignatureUpload(input) {
     }
 
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         const base64 = e.target.result;
         window.clientSignatureBase64 = base64;
-        
+
         const previewImg = document.getElementById('clientSigPreviewImg');
         const previewContainer = document.getElementById('clientSigPreviewContainer');
         const uploadBox = document.getElementById('clientSigUploadBox');
-        
+
         previewImg.src = base64;
         previewContainer.classList.remove('hidden');
         uploadBox.classList.add('hidden');
-        
+
         showToast('Đã tải lên chữ ký khách hàng.');
     };
     reader.readAsDataURL(file);
@@ -797,7 +879,7 @@ function updateSidebarStatus() {
 function showSampleModal(type) {
     const modalId = `sample-modal-${type}`;
     let modal = document.getElementById(modalId);
-    
+
     if (!modal) {
         modal = document.createElement('div');
         modal.id = modalId;
@@ -826,10 +908,10 @@ function showSampleModal(type) {
         `;
         document.body.appendChild(modal);
     }
-    
+
     // Initial render
     filterSampleList(type, '');
-    
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
 }
@@ -842,7 +924,7 @@ function filterSampleList(type, query) {
     else if (type === 'structure_pv') list = SAMPLE_STRUCTURE_PV_DATA;
     else if (type === 'structure_ac') list = SAMPLE_STRUCTURE_AC_DATA;
     else if (type === 'inspection') list = SAMPLE_INSPECTION_DATA;
-    
+
     let title = 'Chọn mẫu';
     if (type === 'pv') title = 'Chọn mẫu Tấm pin (PV Panel)';
     if (type === 'inverter') title = 'Chọn mẫu Biến tần (Inverter)';
@@ -850,18 +932,18 @@ function filterSampleList(type, query) {
     if (type === 'structure_pv') title = 'Chọn mẫu Khung giá đỡ PV';
     if (type === 'structure_ac') title = 'Chọn mẫu Khung giá đỡ AC';
     if (type === 'inspection') title = 'Chọn lần kiểm tra';
-    
+
     const container = document.getElementById(`sample-list-container-${type}`);
     const titleElement = document.getElementById(`modal-title-${type}`);
     if (titleElement) titleElement.textContent = title;
     if (!container) return;
-    
-    const filtered = list.map((item, index) => ({...item, originalIndex: index}))
+
+    const filtered = list.map((item, index) => ({ ...item, originalIndex: index }))
         .filter(item => {
             const searchStr = `${item.manufacturer || ''} ${item.model || ''}`.toLowerCase();
             return searchStr.includes(query.toLowerCase());
         });
-    
+
     if (filtered.length === 0) {
         container.innerHTML = `
             <div class="p-8 text-center">
@@ -871,7 +953,7 @@ function filterSampleList(type, query) {
         `;
         return;
     }
-    
+
     container.innerHTML = filtered.map(item => `
         <button onclick="applySample('${type}', ${item.originalIndex})" class="w-full p-4 flex items-center justify-between text-left rounded-xl border border-transparent hover:border-primary/20 hover:bg-primary/5 transition-all group">
             <div class="flex-1">
@@ -903,18 +985,18 @@ function applySample(type, index) {
     else if (type === 'structure_pv') data = SAMPLE_STRUCTURE_PV_DATA[index];
     else if (type === 'structure_ac') data = SAMPLE_STRUCTURE_AC_DATA[index];
     else if (type === 'inspection') data = SAMPLE_INSPECTION_DATA[index];
-    
+
     if (type === 'pv') {
         const manInput = document.querySelector('[data-path="pvSystem.specs.manufacturer"]');
         const modInput = document.querySelector('[data-path="pvSystem.specs.panelModel"]');
         const capInput = document.querySelector('[data-path="pvSystem.specs.capacity"]');
         const qtyInput = document.querySelector('[data-path="pvSystem.specs.panelQty"]');
-        
+
         if (manInput) manInput.value = data.manufacturer;
         if (modInput) modInput.value = data.model;
         if (capInput) capInput.value = data.capacity;
         if (qtyInput) qtyInput.value = data.qty;
-        
+
         // Store Voc for calculations
         window.currentModuleVoc = data.voc || 0;
         updateAllCalculatedVoc();
@@ -923,7 +1005,7 @@ function applySample(type, index) {
         const modInput = document.querySelector('[data-path="inverter.specs.model"]');
         const powInput = document.querySelector('[data-path="inverter.specs.power"]');
         const qtyInput = document.querySelector('[data-path="inverter.specs.qty"]');
-        
+
         if (manInput) manInput.value = data.manufacturer;
         if (modInput) modInput.value = data.model;
         if (powInput) powInput.value = data.capacity;
@@ -933,7 +1015,7 @@ function applySample(type, index) {
         const modInput = document.querySelector('[data-path="acCabinet.specs.model"]');
         const qtyInput = document.querySelector('[data-path="acCabinet.specs.cbQty"]');
         const ipInput = document.querySelector('[data-path="acCabinet.specs.ipRating"]');
-        
+
         if (manInput) manInput.value = data.manufacturer;
         if (modInput) modInput.value = data.model;
         if (qtyInput) qtyInput.value = data.cbQty;
@@ -952,7 +1034,7 @@ function applySample(type, index) {
         const inspInput = document.querySelector('[data-path="projectInfo.inspectionNo"]');
         if (inspInput) inspInput.value = data.model;
     }
-    
+
     // Update labels and sidebar
     updateSidebarStatus();
     closeSampleModal(type);
@@ -968,7 +1050,7 @@ function updateAllCalculatedVoc() {
     // The Insulation Resistance table has rows for String 1-20 (or more)
     // We look for inputs with data-path like pvSystem.insulationResistance.X.panelQty
     const rows = document.querySelectorAll('input[data-path*="pvSystem.insulationResistance"]');
-    
+
     // Group by index
     const indices = new Set();
     rows.forEach(r => {
@@ -979,7 +1061,7 @@ function updateAllCalculatedVoc() {
     indices.forEach(idx => {
         const qtyInput = document.querySelector(`[data-path="pvSystem.insulationResistance.${idx}.panelQty"]`);
         const vocInput = document.querySelector(`[data-path="pvSystem.insulationResistance.${idx}.voc"]`);
-        
+
         if (qtyInput && vocInput) {
             const qty = parseFloat(qtyInput.value);
             if (!isNaN(qty) && qty > 0) {
