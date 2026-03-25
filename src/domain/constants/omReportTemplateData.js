@@ -131,7 +131,7 @@ const OM_REPORT_DEFAULT_DATA = {
         cableTray: [
             { item: "Kiểm tra độ kín máng cáp AC & DC\n<span class=\"italic\">Check sealing of AC & DC cable tray</span>", status: "", remarks: "" },
             { item: "Xịt foam làm kín các điểm hở chưa đạt tiêu chuẩn\n<span class=\"italic\">Foam-seal any non-compliant gaps</span>", status: "", remarks: "" },
-            { item: "Kiểm tra đầu nối ống ruột gà với máng cáp (không hở, không lỏng)\n<span class=\"italic\">Check conduit-to-tray joints (no gap, no looseness)</span>", status: "", remarks: "" },
+            { item: "Kiểm tra đầu nối ống ruột gà với máng cáp (không hở và lỏng)\n<span class=\"italic\">Check conduit-to-tray joints (no gap, no looseness)</span>", status: "", remarks: "" },
             { item: "Kiểm tra kẹp dây DC & cố định đầu nối MC4\n<span class=\"italic\">DC cable clamps & MC4 connector fixation</span>", status: "", remarks: "" }
         ],
         roofStructure: [

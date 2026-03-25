@@ -776,7 +776,14 @@
                                     </div>
                                 </div>
                                 <div class="input-group-premium">
-                                    <label>Lần kiểm tra / Insp. No</label>
+                                    <div class="flex items-center justify-between mb-1">
+                                        <label class="mb-0">Lần kiểm tra / Insp. No</label>
+                                        <button type="button" onclick="showSampleModal('inspection')"
+                                            class="text-[9px] font-black uppercase tracking-widest text-primary/60 hover:text-primary flex items-center gap-1 transition-colors">
+                                            <span class="material-symbols-outlined text-[12px]">library_add</span>
+                                            Chọn mẫu
+                                        </button>
+                                    </div>
                                     <div class="input-container">
                                         <span class="material-symbols-outlined input-icon">numbers</span>
                                         <input type="text" data-path="projectInfo.inspectionNo"
@@ -1167,11 +1174,33 @@
                     </div>
 
                     <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div class="input-group"><label>Loại kết cấu / Structure type</label><input type="text"
-                                    data-path="mountingStructure.specs.type"></div>
-                            <div class="input-group"><label>Chất liệu / Material</label><input type="text"
-                                    data-path="mountingStructure.specs.material"></div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                                Thông số kỹ thuật / <span class="italic font-normal text-slate-500">Specifications</span>
+                            </h3>
+                            <button type="button" onclick="showSampleModal('structure_pv')"
+                                class="px-3 py-1.5 bg-blue-50 text-primary border border-blue-100 hover:bg-primary hover:text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
+                                <span class="material-symbols-outlined text-[14px]">library_add</span>
+                                Chọn mẫu Khung giá đỡ
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-2 lg:grid-cols-[1.1fr_1.1fr_1.1fr_1.7fr] gap-3">
+                            <div class="input-group">
+                                <label class="whitespace-nowrap">Loại kết cấu / Structure type</label>
+                                <input type="text" data-path="mountingStructure.specs.type">
+                            </div>
+                            <div class="input-group">
+                                <label class="whitespace-nowrap">Chất liệu / Material</label>
+                                <input type="text" data-path="mountingStructure.specs.material">
+                            </div>
+                            <div class="input-group">
+                                <label class="whitespace-nowrap">Năm lắp đặt / Install year</label>
+                                <input type="text" data-path="mountingStructure.specs.installYear">
+                            </div>
+                            <div class="input-group">
+                                <label class="whitespace-nowrap text-[9px] min-[1400px]:text-[10px]">Tình trạng tổng thể / Overall condition</label>
+                                <input type="text" data-path="mountingStructure.specs.overallCondition">
+                            </div>
                         </div>
                     </div>
 
@@ -1206,7 +1235,7 @@
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1 text-[13px] font-semibold text-slate-800 tracking-tight">
-                                Siết lực ốc kẹp biên (end clamp) – theo torque nhà SX
+                                Siết lực ốc kẹp biên – theo torque nhà SX
                                 <p class="text-[11px] text-slate-500 italic">End clamp torque check – per manufacturer
                                     spec</p>
                             </div>
@@ -1222,7 +1251,7 @@
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1 text-[13px] font-semibold text-slate-800 tracking-tight">
-                                Siết lực ốc kẹp giữa (mid clamp) – theo torque nhà SX
+                                Siết lực ốc kẹp giữa – theo torque nhà SX
                                 <p class="text-[11px] text-slate-500 italic">Mid clamp torque check – per manufacturer
                                     spec</p>
                             </div>
@@ -1299,14 +1328,22 @@
                             </button>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div class="input-group"><label>Hãng sản xuất / Manufacturer</label><input type="text"
-                                    data-path="acCabinet.specs.manufacturer"></div>
-                            <div class="input-group"><label>Model</label><input type="text"
-                                    data-path="acCabinet.specs.model"></div>
-                            <div class="input-group"><label>Số lượng CB / CB Qty</label><input type="text"
-                                    data-path="acCabinet.specs.cbQty"></div>
-                            <div class="input-group"><label>IP Rating</label><input type="text"
-                                    data-path="acCabinet.specs.ipRating"></div>
+                            <div class="input-group">
+                                <label>Hãng sản xuất / Manufacturer</label>
+                                <input type="text" data-path="acCabinet.specs.manufacturer">
+                            </div>
+                            <div class="input-group">
+                                <label>Model Tủ / Model Cabinet</label>
+                                <input type="text" data-path="acCabinet.specs.model">
+                            </div>
+                            <div class="input-group">
+                                <label>Số lượng CB / CB Qty</label>
+                                <input type="text" data-path="acCabinet.specs.cbQty">
+                            </div>
+                            <div class="input-group">
+                                <label>Chỉ số IP / IP Rating</label>
+                                <input type="text" data-path="acCabinet.specs.ipRating">
+                            </div>
                         </div>
                     </div>
 
@@ -1678,11 +1715,33 @@
         </div>
 
         <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-slate-100 mb-3">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div class="input-group"><label>Loại kết cấu / Structure type</label><input type="text"
-                        data-path="others.mountingFrame.specs.type" value="Liên kết Rail - Ke vuông - Tường"></div>
-                <div class="input-group"><label>Chất liệu / Material</label><input type="text"
-                        data-path="others.mountingFrame.specs.material" value="Nhôm"></div>
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="text-[13px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                    Thông số kỹ thuật / <span class="italic font-normal text-slate-500">Specifications</span>
+                </h3>
+                <button type="button" onclick="showSampleModal('structure_ac')"
+                    class="px-3 py-1.5 bg-blue-50 text-primary border border-blue-100 hover:bg-primary hover:text-white rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5 shadow-sm active:scale-95 group">
+                    <span class="material-symbols-outlined text-[14px]">library_add</span>
+                    Chọn mẫu Khung AC
+                </button>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-[1.1fr_1.1fr_1.1fr_1.7fr] gap-3">
+                <div class="input-group">
+                    <label class="whitespace-nowrap">Loại kết cấu / Structure type</label>
+                    <input type="text" data-path="others.mountingFrame.specs.type">
+                </div>
+                <div class="input-group">
+                    <label class="whitespace-nowrap">Chất liệu / Material</label>
+                    <input type="text" data-path="others.mountingFrame.specs.material">
+                </div>
+                <div class="input-group">
+                    <label class="whitespace-nowrap">Năm lắp đặt / Install year</label>
+                    <input type="text" data-path="others.mountingFrame.specs.installYear">
+                </div>
+                <div class="input-group">
+                    <label class="whitespace-nowrap">Tình trạng tổng thể / Overall condition</label>
+                    <input type="text" data-path="others.mountingFrame.specs.overallCondition">
+                </div>
             </div>
         </div>
 
@@ -1801,7 +1860,7 @@
             </div>
             <div class="checklist-item text-sm">
                 <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                    Kiểm tra đầu nối ống ruột gà với máng cáp (không hở, không lỏng)
+                    Kiểm tra đầu nối ống ruột gà với máng cáp (không hở và lỏng)
                     <p class="text-[11px] text-slate-500 italic">Check conduit-to-tray joints (no gap, no looseness)</p>
                 </div>
                 <div class="flex items-center gap-2">

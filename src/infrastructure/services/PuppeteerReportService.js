@@ -253,16 +253,16 @@ class PuppeteerReportService extends IReportService {
                 <div class="section-title">Thông số kỹ thuật / <span class="italic">Specifications</span></div>
                 <table>
                     <tr>
-                        <td class="bg-gray font-bold" style="width: 25%;">Loại kết cấu / <span class="italic">Structure type</span></td>
+                        <td class="bg-gray font-bold" style="width: 25%;">Loại kết cấu /<br/><span class="italic">Structure type</span></td>
                         <td style="width: 25%; font-weight: bold;">${omData.mountingStructure.specs.type}</td>
-                        <td class="bg-gray font-bold" style="width: 25%;">Chất liệu / <span class="italic">Material</span></td>
+                        <td class="bg-gray font-bold" style="width: 25%;">Chất liệu /<br/><span class="italic">Material</span></td>
                         <td style="width: 25%; font-weight: bold;">${omData.mountingStructure.specs.material}</td>
                     </tr>
                     <tr>
-                        <td class="bg-gray font-bold">Năm lắp đặt / <span class="italic">Install year</span></td>
+                        <td class="bg-gray font-bold">Năm lắp đặt /<br/><span class="italic">Install year</span></td>
                         <td>${omData.mountingStructure.specs.installYear}</td>
-                        <td class="bg-gray font-bold">Tình trạng tổng thể / <span class="italic">Overall condition</span></td>
-                        <td style="font-weight: bold;">${omData.mountingStructure.specs.overallCondition}</td>
+                        <td class="bg-gray font-bold">Tình trạng tổng thể /<br/><span class="italic">Overall condition</span></td>
+                        <td style="font-weight: bold;">${omData.mountingStructure.specs.overallCondition || omData.mountingStructure.specs.overall || ''}</td>
                     </tr>
                 </table>
             </div>
@@ -297,15 +297,15 @@ class PuppeteerReportService extends IReportService {
                 <div class="section-title">Thông số / <span class="italic">Specifications</span></div>
                 <table>
                     <tr>
-                        <td class="bg-gray font-bold" style="width: 25%;">Hãng sản xuất / <span class="italic">Manufacturer</span></td>
+                        <td class="bg-gray font-bold" style="width: 25%;">Hãng sản xuất /<br/><span class="italic">Manufacturer</span></td>
                         <td class="text-center font-bold" style="width: 25%;">${omData.acCabinet.specs.manufacturer}</td>
-                        <td class="bg-gray font-bold" style="width: 25%;">Model</td>
+                        <td class="bg-gray font-bold" style="width: 25%;">Model Tủ /<br/><span class="italic">Model Cabinet</span></td>
                         <td class="text-center font-bold" style="width: 25%;">${omData.acCabinet.specs.model}</td>
                     </tr>
                     <tr>
-                        <td class="bg-gray font-bold">Số CB / <span class="italic">CB Qty</span></td>
+                        <td class="bg-gray font-bold">Số CB /<br/><span class="italic">CB Qty</span></td>
                         <td class="text-center">${omData.acCabinet.specs.cbQty}</td>
-                        <td class="bg-gray font-bold">Chỉ số IP / <span class="italic">IP Rating</span></td>
+                        <td class="bg-gray font-bold">Chỉ số IP /<br/><span class="italic">IP Rating</span></td>
                         <td class="text-center">${omData.acCabinet.specs.ipRating}</td>
                     </tr>
                 </table>
@@ -357,21 +357,21 @@ class PuppeteerReportService extends IReportService {
             <div class="section-title">Thông số kỹ thuật / <span class="italic">Specifications</span></div>
             <table>
                 <tr>
-                    <td class="bg-gray font-bold" style="width: 25%;">Hãng sản xuất / <span class="italic">Manufacturer</span></td>
+                    <td class="bg-gray font-bold" style="width: 25%;">Hãng sản xuất /<br/><span class="italic">Manufacturer</span></td>
                     <td style="width: 25%; font-weight: bold;">${omData.inverter.specs.manufacturer}</td>
                     <td class="bg-gray font-bold" style="width: 25%;">Model / Series</td>
                     <td style="width: 25%; font-weight: bold;">${omData.inverter.specs.model}</td>
                 </tr>
                 <tr>
-                    <td class="bg-gray font-bold">Công suất danh định / <span class="italic">Rated power (kW)</span></td>
+                    <td class="bg-gray font-bold">Công suất danh định /<br/><span class="italic">Rated power (kW)</span></td>
                     <td>${omData.inverter.specs.power}</td>
-                    <td class="bg-gray font-bold">Số lượng / <span class="italic">Quantity</span></td>
+                    <td class="bg-gray font-bold">Số lượng /<br/><span class="italic">Quantity</span></td>
                     <td>${omData.inverter.specs.qty}</td>
                 </tr>
                 <tr>
                     <td class="bg-gray font-bold">Firmware version</td>
                     <td>${omData.inverter.specs.firmware || ''}</td>
-                    <td class="bg-gray font-bold">Ngày cài đặt / <span class="italic">Install date</span></td>
+                    <td class="bg-gray font-bold">Ngày cài đặt /<br/><span class="italic">Install date</span></td>
                     <td>${omData.inverter.specs.installDate}</td>
                 </tr>
             </table>
@@ -406,10 +406,16 @@ class PuppeteerReportService extends IReportService {
             <div class="section-title">Thông số kỹ thuật / <span class="italic">Specifications</span></div>
             <table>
                 <tr>
-                    <td class="font-bold bg-gray" style="width: 30%;">Loại kết cấu / <span class="italic">Structure type</span></td>
-                    <td style="width: 30%;">${omData.others.mountingFrame.specs.type}</td>
-                    <td class="font-bold bg-gray" style="width: 20%;">Chất liệu / <span class="italic">Material</span></td>
-                    <td style="width: 20%;">${omData.others.mountingFrame.specs.material}</td>
+                    <td class="font-bold bg-gray" style="width: 25%;">Loại kết cấu /<br/><span class="italic">Structure type</span></td>
+                    <td style="width: 25%;">${omData.others.mountingFrame.specs.type}</td>
+                    <td class="font-bold bg-gray" style="width: 25%;">Chất liệu /<br/><span class="italic">Material</span></td>
+                    <td style="width: 25%;">${omData.others.mountingFrame.specs.material}</td>
+                </tr>
+                <tr>
+                    <td class="bg-gray font-bold">Năm lắp đặt /<br/><span class="italic">Install year</span></td>
+                    <td>${omData.others.mountingFrame.specs.installYear || ''}</td>
+                    <td class="bg-gray font-bold">Tình trạng tổng thể /<br/><span class="italic">Overall condition</span></td>
+                    <td>${omData.others.mountingFrame.specs.overallCondition || ''}</td>
                 </tr>
             </table>
 
@@ -471,10 +477,6 @@ class PuppeteerReportService extends IReportService {
             </table>
 
             <div class="section-header" style="margin-top: 20px;">10. Kết quả kiểm tra nhiệt ảnh / <span class="italic">Thermal Imaging Results</span></div>
-            <div style="font-size: 9pt; color: #333; margin-bottom: 5px; line-height: 1.6;">
-                <span style="color: #cc0000;">▸</span> <strong>Thiết bị:</strong> Testo 871  |  <strong>Emissivity:</strong> 0.95  |  <strong>Nhiệt độ phản chiếu:</strong> 20°C<br/>
-                <span style="color: #cc0000;">▸</span> <strong>Tiêu chuẩn:</strong> điểm đấu nối ≤ 65°C;  ΔT > 5°C → Warning;  ΔT > 10°C → Critical
-            </div>
 
             ${this._renderFooter(5, totalPages)}
         </div>`;
@@ -513,10 +515,10 @@ class PuppeteerReportService extends IReportService {
             </div>
             <table>
                 <tr>
-                    <th style="width: 40%;">Điểm đo / <span class="italic">Measurement Point</span></th>
-                    <th style="width: 15%;">Tiêu chuẩn / <span class="italic">Standard</span></th>
-                    <th style="width: 15%;">Giá trị đo / <span class="italic">Value (Ω)</span></th>
-                    <th style="width: 15%;">Đánh giá / <span class="italic">Evaluation</span></th>
+                    <th style="width: 40%;">Điểm đo /<br/><span class="italic">Measurement Point</span></th>
+                    <th style="width: 15%;">Tiêu chuẩn /<br/><span class="italic">Standard</span></th>
+                    <th style="width: 15%;">Giá trị đo /<br/><span class="italic">Value (Ω)</span></th>
+                    <th style="width: 15%;">Đánh giá /<br/><span class="italic">Evaluation</span></th>
                 </tr>
                 ${omData.earthResistance.map(r => `
                     <tr>
@@ -531,10 +533,10 @@ class PuppeteerReportService extends IReportService {
             <div class="section-header" style="margin-top: 20px;">12. Tổng hợp kết quả kiểm tra / Inspection Summary</div>
             <table>
                 <tr>
-                    <th style="width: 30%;">Hạng mục / <span class="italic">Module</span></th>
-                    <th style="width: 15%;">Mức độ / <span class="italic">Severity</span></th>
-                    <th style="width: 25%;">Mô tả sự cố / <span class="italic">Description</span></th>
-                    <th style="width: 30%;">Hành động / <span class="italic">Action Required</span></th>
+                    <th style="width: 30%;">Hạng mục /<br/><span class="italic">Module</span></th>
+                    <th style="width: 15%;">Mức độ /<br/><span class="italic">Severity</span></th>
+                    <th style="width: 25%;">Mô tả sự cố /<br/><span class="italic">Description</span></th>
+                    <th style="width: 30%;">Hành động /<br/><span class="italic">Action Required</span></th>
                 </tr>
                 ${omData.summary.map(s => `
                     <tr>
@@ -628,8 +630,13 @@ class PuppeteerReportService extends IReportService {
                     ${this._renderHeader(logo)}
                     ${this._renderWatermark(logo)}
                     
-                    <div style="font-weight: bold; font-size: 13pt; color: #0056b3; border-bottom: 1.5px solid #0056b3; padding-bottom: 5px; margin-bottom: 15px; margin-top: 10px;">
+                    <div style="font-weight: bold; font-size: 13pt; color: #0056b3; border-bottom: 1.5px solid #0056b3; padding-bottom: 5px; margin-bottom: 10px; margin-top: 10px;">
                         ${cat.categoryTitle}${titleSuffix}
+                    </div>
+                    
+                    <div style="font-size: 8.5pt; color: #333; margin-bottom: 15px; line-height: 1.5; background: #f8fafc; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                        <span style="color: #cc0000;">▸</span> <strong>Thiết bị:</strong> Testo 871  |  <strong>Emissivity:</strong> 0.95  |  <strong>Nhiệt độ phản chiếu:</strong> 20°C<br/>
+                        <span style="color: #cc0000;">▸</span> <strong>Tiêu chuẩn:</strong> điểm đấu nối ≤ 65°C;  ΔT > 5°C → <span style="color: #f59e0b;">Warning</span>;  ΔT > 10°C → <span style="color: #ef4444;">Critical</span>
                     </div>
                 `;
 

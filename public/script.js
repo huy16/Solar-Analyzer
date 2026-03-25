@@ -2,27 +2,104 @@ let OM_DATA = {};
 window.currentModuleVoc = 0;
 
 const SAMPLE_PV_DATA = [
-    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-660MS', capacity: 660, voc: 45.4, qty: 100 },
-    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-650MS', capacity: 650, voc: 45.0, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'CS6.2-66TB-600', capacity: 600, voc: 47.6, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'CS6.2-66TB-605', capacity: 605, voc: 47.8, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'CS6.2-66TB-610', capacity: 610, voc: 48, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'CS6.2-66TB-615', capacity: 615, voc: 48.2, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'CS6.2-66TB-620', capacity: 620, voc: 48.4, qty: 100 },
     { manufacturer: 'Canadian Solar', model: 'CS6.2-66TB-625', capacity: 625, voc: 48.6, qty: 100 },
-    { manufacturer: 'Astronergy', model: 'ASTRO-5 CHSM72M-HC 550W', capacity: 550, voc: 50.1, qty: 100 },
-    { manufacturer: 'TCL/HSPV', model: 'N-Type Topcon G12 700W', capacity: 700, voc: 48.0, qty: 100 },
-    { manufacturer: 'Hershey/TCL', model: 'HSM-BD72-GC650', capacity: 650, voc: 54.0, qty: 100 },
-    { manufacturer: 'HSPV', model: 'HSM-GHF-NM630', capacity: 630, voc: 48.9, qty: 100 }
+    { manufacturer: 'Canadian Solar', model: 'CS6.2-66TB-630', capacity: 630, voc: 48.8, qty: 100 },
+    { manufacturer: 'Hershey/TCL', model: 'HSM-BD72-GC660', capacity: 660, voc: 54.2, qty: 100 },
+    { manufacturer: 'Hershey/TCL', model: 'HSM-BD72-GC655', capacity: 655, voc: 54.1, qty: 100 },
+    { manufacturer: 'Hershey/TCL', model: 'HSM-BD72-GC650', capacity: 650, voc: 54, qty: 100 },
+    { manufacturer: 'Hershey/TCL', model: 'HSM-BD72-GC645', capacity: 645, voc: 53.9, qty: 100 },
+    { manufacturer: 'Hershey/TCL', model: 'HSM-BD72-GC640', capacity: 640, voc: 53.8, qty: 100 },
+    { manufacturer: 'Hershey/TCL', model: 'HSM-BD72-GC635', capacity: 635, voc: 53.7, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-GHF-NM630', capacity: 630, voc: 48.9, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-GHF-NM625', capacity: 625, voc: 48.7, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-GHF-NM620', capacity: 620, voc: 48.5, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-GHF-NM615', capacity: 615, voc: 48.3, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-GHF-NM610', capacity: 610, voc: 48.1, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-GHF-NM605', capacity: 605, voc: 47.9, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-675MS', capacity: 675, voc: 46, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-670MS', capacity: 670, voc: 45.8, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-665MS', capacity: 665, voc: 45.6, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-660MS', capacity: 660, voc: 45.4, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-655MS', capacity: 655, voc: 45.2, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-650MS', capacity: 650, voc: 45, qty: 100 },
+    { manufacturer: 'Canadian Solar', model: 'HiKu7 CS7N-645MS', capacity: 645, voc: 44.8, qty: 100 },
+    { manufacturer: 'Astronergy', model: 'CHSM72M-HC 555W', capacity: 555, voc: 50.3, qty: 100 },
+    { manufacturer: 'Astronergy', model: 'CHSM72M-HC 550W', capacity: 550, voc: 50.1, qty: 100 },
+    { manufacturer: 'Astronergy', model: 'CHSM72M-HC 545W', capacity: 545, voc: 49.9, qty: 100 },
+    { manufacturer: 'Astronergy', model: 'CHSM72M-HC 540W', capacity: 540, voc: 49.7, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-ND66-GK700', capacity: 700, voc: 48.26, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-ND66-GK705', capacity: 705, voc: 48.48, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-ND66-GK710', capacity: 710, voc: 48.70, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-ND66-GK715', capacity: 715, voc: 48.92, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-ND66-GK720', capacity: 720, voc: 49.14, qty: 100 },
+    { manufacturer: 'HSPV', model: 'HSM-ND66-GK725', capacity: 725, voc: 49.36, qty: 100 }
 ];
 
 const SAMPLE_INVERTER_DATA = [
+    { manufacturer: 'Huawei', model: 'SUN2000-2KTL-L1', capacity: 2 },
+    { manufacturer: 'Huawei', model: 'SUN2000-3KTL-L1', capacity: 3 },
+    { manufacturer: 'Huawei', model: 'SUN2000-3.68KTL-L1', capacity: 3.68 },
+    { manufacturer: 'Huawei', model: 'SUN2000-4KTL-L1', capacity: 4 },
+    { manufacturer: 'Huawei', model: 'SUN2000-4.6KTL-L1', capacity: 4.6 },
+    { manufacturer: 'Huawei', model: 'SUN2000-5KTL-L1', capacity: 5 },
+    { manufacturer: 'Huawei', model: 'SUN2000-6KTL-L1', capacity: 6 },
+    { manufacturer: 'Huawei', model: 'SUN2000-3KTL-M1', capacity: 3 },
+    { manufacturer: 'Huawei', model: 'SUN2000-4KTL-M1', capacity: 4 },
+    { manufacturer: 'Huawei', model: 'SUN2000-5KTL-M1', capacity: 5 },
+    { manufacturer: 'Huawei', model: 'SUN2000-6KTL-M1', capacity: 6 },
+    { manufacturer: 'Huawei', model: 'SUN2000-8KTL-M1', capacity: 8 },
+    { manufacturer: 'Huawei', model: 'SUN2000-10KTL-M1', capacity: 10 },
+    { manufacturer: 'Huawei', model: 'SUN2000-8K-LC0', capacity: 8 },
+    { manufacturer: 'Huawei', model: 'SUN2000-10K-LC0', capacity: 10 },
+    { manufacturer: 'Huawei', model: 'SUN2000-5K-MAP0', capacity: 5 },
+    { manufacturer: 'Huawei', model: 'SUN2000-6K-MAP0', capacity: 6 },
+    { manufacturer: 'Huawei', model: 'SUN2000-8K-MAP0', capacity: 8 },
+    { manufacturer: 'Huawei', model: 'SUN2000-10K-MAP0', capacity: 10 },
+    { manufacturer: 'Huawei', model: 'SUN2000-12K-MAP0', capacity: 12 },
+    { manufacturer: 'Huawei', model: 'SUN2000-12KTL-M2', capacity: 12 },
+    { manufacturer: 'Huawei', model: 'SUN2000-15KTL-M2', capacity: 15 },
+    { manufacturer: 'Huawei', model: 'SUN2000-17KTL-M2', capacity: 17 },
+    { manufacturer: 'Huawei', model: 'SUN2000-20KTL-M2', capacity: 20 },
+    { manufacturer: 'Huawei', model: 'SUN2000-12KTL-M5', capacity: 12 },
+    { manufacturer: 'Huawei', model: 'SUN2000-15KTL-M5', capacity: 15 },
+    { manufacturer: 'Huawei', model: 'SUN2000-17KTL-M5', capacity: 17 },
+    { manufacturer: 'Huawei', model: 'SUN2000-20KTL-M5', capacity: 20 },
+    { manufacturer: 'Huawei', model: 'SUN2000-25KTL-M5', capacity: 25 },
     { manufacturer: 'Huawei', model: 'SUN2000-30KTL-M3', capacity: 30 },
+    { manufacturer: 'Huawei', model: 'SUN2000-36KTL-M3', capacity: 36 },
     { manufacturer: 'Huawei', model: 'SUN2000-40KTL-M3', capacity: 40 },
     { manufacturer: 'Huawei', model: 'SUN2000-50KTL-M3', capacity: 50 },
+    { manufacturer: 'Huawei', model: 'SUN2000-60KTL-M0', capacity: 60 },
+    { manufacturer: 'Huawei', model: 'SUN2000-70KTL-INM0', capacity: 70 },
     { manufacturer: 'Huawei', model: 'SUN2000-100KTL-M2', capacity: 100 },
     { manufacturer: 'Huawei', model: 'SUN2000-115KTL-M2', capacity: 115 },
-    { manufacturer: 'Huawei', model: 'SUN2000-12-25KTL-M5', capacity: 25 },
     { manufacturer: 'Huawei', model: 'SUN2000-150K-MG0', capacity: 150 }
 ];
 
 const SAMPLE_AC_DATA = [
     { manufacturer: 'CAS/ Việt Nam', model: 'CAS-SB-2ST', cbQty: 5, ipRating: 'IP65' }
+];
+
+const SAMPLE_STRUCTURE_PV_DATA = [
+    { manufacturer: 'CAS', model: 'Liên kết Rail - Chân L - Sóng Tôn', material: 'Nhôm' }
+];
+
+const SAMPLE_STRUCTURE_AC_DATA = [
+    { manufacturer: 'CAS', model: 'Liên kết Rail - Ke Vuông - Tường', material: 'Nhôm' }
+];
+
+const SAMPLE_INSPECTION_DATA = [
+    { model: 'Kiểm tra định kỳ lần 1' },
+    { model: 'Kiểm tra định kỳ lần 2' },
+    { model: 'Kiểm tra định kỳ lần 3' },
+    { model: 'Kiểm tra định kỳ lần 4' },
+    { model: 'Kiểm tra đột xuất' },
+    { model: 'Nghiệm thu bàn giao' }
 ];
 
 
@@ -702,7 +779,6 @@ function updateSidebarStatus() {
             const earthInputs = tab.querySelectorAll('input[type="number"]');
             earthInputs.forEach(i => { if (i.value !== '') filledCount++; });
         }
-
         if (tabId === '13') { // Signatures
             if (window.technicianSignatureBase64 || window.clientSignatureBase64) filledCount += 1;
         }
@@ -719,47 +795,96 @@ function updateSidebarStatus() {
 // Sample Data Selection UI
 // ==========================================
 function showSampleModal(type) {
-    let list = [];
-    if (type === 'pv') list = SAMPLE_PV_DATA;
-    else if (type === 'inverter') list = SAMPLE_INVERTER_DATA;
-    else if (type === 'ac') list = SAMPLE_AC_DATA;
-    
     const modalId = `sample-modal-${type}`;
-    
-    // Create modal if not exists
     let modal = document.getElementById(modalId);
+    
     if (!modal) {
         modal = document.createElement('div');
         modal.id = modalId;
         modal.className = 'fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 backdrop-blur-sm';
         modal.innerHTML = `
-            <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden border border-slate-100 transform transition-all">
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-5">
-                        <h3 class="text-lg font-black text-slate-800 uppercase tracking-tight">Chọn mẫu ${type === 'pv' ? 'Tấm pin (PV)' : (type === 'inverter' ? 'Inverter' : 'Tủ điện AC')}</h3>
+            <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden border border-slate-100 transform transition-all flex flex-col max-h-[90vh]">
+                <div class="p-6 border-b border-slate-100">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-black text-slate-800 uppercase tracking-tight" id="modal-title-${type}">Chọn mẫu</h3>
                         <button onclick="closeSampleModal('${type}')" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 text-slate-500 transition-colors">
                             <span class="material-symbols-outlined text-[18px]">close</span>
                         </button>
                     </div>
-                    <div class="space-y-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-                        ${list.map((item, index) => `
-                            <button onclick="applySample('${type}', ${index})" class="w-full p-4 flex items-center justify-between text-left rounded-xl border border-slate-200 hover:border-primary hover:bg-primary/5 transition-all group">
-                                <div>
-                                    <p class="font-bold text-slate-800 text-[14px]">${item.model}</p>
-                                    <p class="text-[11px] text-slate-500 font-medium">${item.manufacturer} ${item.capacity ? `• ${item.capacity}${type === 'pv' ? ' Wp' : ' kW'}` : ''}</p>
-                                </div>
-                                <span class="material-symbols-outlined text-transparent group-hover:text-primary transition-all">arrow_forward_ios</span>
-                            </button>
-                        `).join('')}
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+                        <input type="text" 
+                            placeholder="Tìm kiếm theo hãng hoặc model..." 
+                            class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
+                            oninput="filterSampleList('${type}', this.value)">
                     </div>
+                </div>
+                <div id="sample-list-container-${type}" class="p-2 space-y-1 overflow-y-auto custom-scrollbar flex-1">
+                    <!-- List items will be injected here -->
                 </div>
             </div>
         `;
         document.body.appendChild(modal);
     }
     
+    // Initial render
+    filterSampleList(type, '');
+    
     modal.classList.remove('hidden');
     modal.classList.add('flex');
+}
+
+function filterSampleList(type, query) {
+    let list = [];
+    if (type === 'pv') list = SAMPLE_PV_DATA;
+    else if (type === 'inverter') list = SAMPLE_INVERTER_DATA;
+    else if (type === 'ac') list = SAMPLE_AC_DATA;
+    else if (type === 'structure_pv') list = SAMPLE_STRUCTURE_PV_DATA;
+    else if (type === 'structure_ac') list = SAMPLE_STRUCTURE_AC_DATA;
+    else if (type === 'inspection') list = SAMPLE_INSPECTION_DATA;
+    
+    let title = 'Chọn mẫu';
+    if (type === 'pv') title = 'Chọn mẫu Tấm pin (PV Panel)';
+    if (type === 'inverter') title = 'Chọn mẫu Biến tần (Inverter)';
+    if (type === 'ac') title = 'Chọn mẫu Tủ điện AC';
+    if (type === 'structure_pv') title = 'Chọn mẫu Khung giá đỡ PV';
+    if (type === 'structure_ac') title = 'Chọn mẫu Khung giá đỡ AC';
+    if (type === 'inspection') title = 'Chọn lần kiểm tra';
+    
+    const container = document.getElementById(`sample-list-container-${type}`);
+    const titleElement = document.getElementById(`modal-title-${type}`);
+    if (titleElement) titleElement.textContent = title;
+    if (!container) return;
+    
+    const filtered = list.map((item, index) => ({...item, originalIndex: index}))
+        .filter(item => {
+            const searchStr = `${item.manufacturer || ''} ${item.model || ''}`.toLowerCase();
+            return searchStr.includes(query.toLowerCase());
+        });
+    
+    if (filtered.length === 0) {
+        container.innerHTML = `
+            <div class="p-8 text-center">
+                <span class="material-symbols-outlined text-slate-300 text-[48px] mb-2">search_off</span>
+                <p class="text-slate-500 text-sm">Không tìm thấy kết quả nào cho "${query}"</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = filtered.map(item => `
+        <button onclick="applySample('${type}', ${item.originalIndex})" class="w-full p-4 flex items-center justify-between text-left rounded-xl border border-transparent hover:border-primary/20 hover:bg-primary/5 transition-all group">
+            <div class="flex-1">
+                <div class="font-bold text-slate-800 text-sm group-hover:text-primary transition-colors">${item.model}</div>
+                <div class="text-xs text-slate-500 flex items-center gap-2 mt-1">
+                    ${item.manufacturer ? `<span class="px-1.5 py-0.5 bg-slate-100 rounded text-slate-600 font-medium">${item.manufacturer}</span>` : ''}
+                    ${item.capacity ? `<span>• ${item.capacity}${type === 'pv' ? 'W' : 'kW'}</span>` : ''}
+                    ${item.voc ? `<span class="text-primary/70">• Voc: ${item.voc}V</span>` : ''}
+                </div>
+            </div>
+            <span class="material-symbols-outlined text-transparent group-hover:text-primary transition-all text-[18px]">add_circle</span>
+        </button>
+    `).join('');
 }
 
 function closeSampleModal(type) {
@@ -775,6 +900,9 @@ function applySample(type, index) {
     if (type === 'pv') data = SAMPLE_PV_DATA[index];
     else if (type === 'inverter') data = SAMPLE_INVERTER_DATA[index];
     else if (type === 'ac') data = SAMPLE_AC_DATA[index];
+    else if (type === 'structure_pv') data = SAMPLE_STRUCTURE_PV_DATA[index];
+    else if (type === 'structure_ac') data = SAMPLE_STRUCTURE_AC_DATA[index];
+    else if (type === 'inspection') data = SAMPLE_INSPECTION_DATA[index];
     
     if (type === 'pv') {
         const manInput = document.querySelector('[data-path="pvSystem.specs.manufacturer"]');
@@ -810,6 +938,19 @@ function applySample(type, index) {
         if (modInput) modInput.value = data.model;
         if (qtyInput) qtyInput.value = data.cbQty;
         if (ipInput) ipInput.value = data.ipRating;
+    } else if (type === 'structure_pv') {
+        const typeInput = document.querySelector('[data-path="mountingStructure.specs.type"]');
+        const matInput = document.querySelector('[data-path="mountingStructure.specs.material"]');
+        if (typeInput) typeInput.value = data.model;
+        if (matInput) matInput.value = data.material;
+    } else if (type === 'structure_ac') {
+        const typeInput = document.querySelector('[data-path="others.mountingFrame.specs.type"]');
+        const matInput = document.querySelector('[data-path="others.mountingFrame.specs.material"]');
+        if (typeInput) typeInput.value = data.model;
+        if (matInput) matInput.value = data.material;
+    } else if (type === 'inspection') {
+        const inspInput = document.querySelector('[data-path="projectInfo.inspectionNo"]');
+        if (inspInput) inspInput.value = data.model;
     }
     
     // Update labels and sidebar
