@@ -63,8 +63,8 @@ const OM_REPORT_DEFAULT_DATA = {
         },
         checklist: [
             { item: "Chụp ảnh tổng quan & chi tiết khung giá đỡ\n<span class=\"italic\">Overall and detailed photo of mounting structure</span>", status: "" },
-            { item: "Siết lực ốc kẹp biên – 14-18 Nm\n<span class=\"italic\">End clamp torque check – 14-18 Nm</span>", status: "" },
-            { item: "Siết lực ốc kẹp giữa – 14-18 Nm\n<span class=\"italic\">Mid clamp torque check – 14-18 Nm</span>", status: "" },
+            { item: "Siết lực ốc kẹp biên – theo torque NSX (14-18 N.m)\n<span class=\"italic\">End clamp torque check – (14-18 N.m)</span>", status: "" },
+            { item: "Siết lực ốc kẹp giữa – theo torque NSX (14-18 N.m)\n<span class=\"italic\">Mid clamp torque check – (14-18 N.m)</span>", status: "" },
             { item: "Kiểm tra ống ruột gà đi dây cáp DC trên mái\n<span class=\"italic\">DC cable conduit on roof</span>", status: "" },
             { item: "Kiểm tra kẹp dây DC & cố định đầu nối MC4\n<span class=\"italic\">DC cable clamps & MC4 connector fixation</span>", status: "" }
         ]
@@ -104,7 +104,7 @@ const OM_REPORT_DEFAULT_DATA = {
             installDate: ""
         },
         checklist: [
-            { item: "Kiểm tra & siết lực đầu đấu nối AC của Inverter 8 Nm\n<span class=\"italic\">Check & torque AC terminal connections 8 Nm</span>", status: "" },
+            { item: "Kiểm tra & siết lực đầu đấu nối AC của Inverter (8 N.m)\n<span class=\"italic\">Check & torque AC terminal connections (8 N.m)</span>", status: "" },
             { item: "Kiểm tra đầu kết nối MC4 phía DC\n<span class=\"italic\">Check DC side MC4 connector condition</span>", status: "" },
             { item: "Vệ sinh nhãn string dây DC – kiểm tra ghi chú đúng chuẩn\n<span class=\"italic\">Clean DC string labels – verify labelling standard</span>", status: "" },
             { item: "Vệ sinh quạt tản nhiệt (nếu có)\n<span class=\"italic\">Clean cooling fan (if present)</span>", status: "" },
@@ -124,7 +124,7 @@ const OM_REPORT_DEFAULT_DATA = {
             },
             checklist: [
                 { item: "Kiểm tra ngoại quan: khung giá đỡ chắc chắn, không cong vênh\n<span class=\"italic\">Check: frame solid, no deformation</span>", status: "", remarks: "" },
-                { item: "Kiểm tra & siết lực bu-lông liên kết khung – tường 45 Nm\n<span class=\"italic\">Check & torque frame-to-wall bolts 45 Nm</span>", status: "", remarks: "" },
+                { item: "Kiểm tra & siết lực bu-lông liên kết khung – tường (45 N.m)\n<span class=\"italic\">Check & torque frame-to-wall bolts (45 N.m)</span>", status: "", remarks: "" },
                 { item: "Chụp ảnh & kiểm tra độ chắc chắn mái che Inverter (nếu có)\n<span class=\"italic\">Photo & check inverter weather cover (if present)</span>", status: "", remarks: "" }
             ]
         },
