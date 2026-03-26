@@ -12,3 +12,33 @@ backup_*/
 *.txt
 .DS_Store
 .env
+
+# PDF reports
+*.pdf
+sample_report_*
+
+# Temporary and test scripts
+check_*.js
+temp_*.js
+fix_*.js
+generate_*.js
+redesign_*.js
+match_*.js
+merge.js
+compact_*.js
+combine_*.js
+extract_*.py
+temp_extract_voc*.py
+force_fix.js
+prev_report_backup.js
+update_thermal.js
+test_*.js
+test_*.png
+test_*.jpg
+standardize_fonts.js
+
+# Temporary Word files
+~$*
+
+# Images (if not needed in repo)
+IR001366_*.jpg

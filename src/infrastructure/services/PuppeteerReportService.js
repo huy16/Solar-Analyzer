@@ -546,16 +546,16 @@ class PuppeteerReportService extends IReportService {
             <table>
                 <tr>
                     <th style="width: 40%;">Điểm đo /<br/><span class="italic">Measurement Point</span></th>
-                    <th style="width: 15%;">Tiêu chuẩn /<br/><span class="italic">Standard</span></th>
                     <th style="width: 15%;">Giá trị đo /<br/><span class="italic">Value (Ω)</span></th>
                     <th style="width: 15%;">Đánh giá /<br/><span class="italic">Evaluation</span></th>
+                    <th style="width: 30%;">Ghi chú /<br/><span class="italic">Remarks</span></th>
                 </tr>
                 ${omData.earthResistance.map(r => `
                     <tr>
                         <td>${r.point.replace(/\n/g, '<br/>')}</td>
-                        <td class="text-center">${r.standard}</td>
                         <td class="text-center font-bold">${r.value}</td>
                         <td class="text-center font-bold" style="color: ${r.evaluation === 'OK' ? '#15803d' : '#ef4444'};">${r.evaluation}</td>
+                        <td>${r.remarks || ''}</td>
                     </tr>
                 `).join('')}
             </table>

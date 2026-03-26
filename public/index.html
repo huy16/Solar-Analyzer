@@ -1246,9 +1246,9 @@ HỆ THỐNG ĐIỆN MẶT TRỜI MÁI NHÀ</textarea>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1 text-[13px] font-semibold text-slate-800 tracking-tight">
-                                Siết lực ốc kẹp biên – theo torque nhà SX
-                                <p class="text-[11px] text-slate-500 italic">End clamp torque check – per manufacturer
-                                    spec</p>
+                                Siết lực ốc kẹp biên – 14-18 Nm
+                                <p class="text-[11px] text-slate-500 italic">End clamp torque check – 14-18 Nm
+                                </p>
                             </div>
                             <div class="flex items-center gap-2">
                                 <select class="status-select" data-path="mountingStructure.checklist.1.status">
@@ -1262,9 +1262,9 @@ HỆ THỐNG ĐIỆN MẶT TRỜI MÁI NHÀ</textarea>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1 text-[13px] font-semibold text-slate-800 tracking-tight">
-                                Siết lực ốc kẹp giữa – theo torque nhà SX
-                                <p class="text-[11px] text-slate-500 italic">Mid clamp torque check – per manufacturer
-                                    spec</p>
+                                Siết lực ốc kẹp giữa – 14-18 Nm
+                                <p class="text-[11px] text-slate-500 italic">Mid clamp torque check – 14-18 Nm
+                                </p>
                             </div>
                             <div class="flex items-center gap-2">
                                 <select class="status-select" data-path="mountingStructure.checklist.2.status">
@@ -1589,8 +1589,8 @@ HỆ THỐNG ĐIỆN MẶT TRỜI MÁI NHÀ</textarea>
                         </div>
                         <div class="checklist-item">
                             <div class="flex-1 text-sm font-semibold text-slate-800 tracking-tight">Kiểm tra & siết lực
-                                đầu đấu nối AC của Inverter<p class="text-[11px] text-slate-500 italic">Check & torque
-                                    AC terminal connections</p>
+                                đầu đấu nối AC của Inverter 8 Nm<p class="text-[11px] text-slate-500 italic">Check & torque
+                                    AC terminal connections 8 Nm</p>
                             </div>
                             <div class="flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
                                 <select class="w-28 text-sm" data-path="inverter.checklist.0.status">
@@ -1792,8 +1792,8 @@ HỆ THỐNG ĐIỆN MẶT TRỜI MÁI NHÀ</textarea>
                         </div>
                         <div class="checklist-item text-sm">
                             <div class="flex-1 font-semibold text-slate-800 tracking-tight">
-                                Kiểm tra & siết lực bu-lông liên kết khung – tường
-                                <p class="text-[11px] text-slate-500 italic">Check & torque frame-to-wall bolts</p>
+                                Kiểm tra & siết lực bu-lông liên kết khung – tường 45 Nm
+                                <p class="text-[11px] text-slate-500 italic">Check & torque frame-to-wall bolts 45 Nm</p>
                             </div>
                             <div class="flex items-center gap-2">
                                 <select class="status-select" data-path="others.mountingFrame.checklist.1.status">
@@ -2140,27 +2140,39 @@ HỆ THỐNG ĐIỆN MẶT TRỜI MÁI NHÀ</textarea>
                             <div class="input-group-premium">
                                 <label>Cọc tiếp địa chính (Ω) <span id="er-eval-0"
                                         class="ml-2 text-xs font-bold"></span></label>
-                                <div class="input-container">
-                                    <span class="material-symbols-outlined input-icon">bolt</span>
-                                    <input type="number" step="0.1" data-path="earthResistance.0.value" value=""
-                                        oninput="evaluateEarthResistance(0, this.value)">
+                                <div class="flex gap-2">
+                                    <div class="input-container flex-1">
+                                        <span class="material-symbols-outlined input-icon">bolt</span>
+                                        <input type="number" step="0.1" data-path="earthResistance.0.value" value=""
+                                            oninput="evaluateEarthResistance(0, this.value)" class="w-full">
+                                    </div>
+                                    <input type="text" placeholder="Ghi chú..." 
+                                        data-path="earthResistance.0.remarks" class="flex-1 text-sm rounded-lg border-slate-200">
                                 </div>
                             </div>
                             <div class="input-group-premium">
                                 <label>Vỏ Inverter (Ω) <span id="er-eval-1"
                                         class="ml-2 text-xs font-bold"></span></label>
-                                <div class="input-container">
-                                    <span class="material-symbols-outlined input-icon">memory</span>
-                                    <input type="number" step="0.1" data-path="earthResistance.1.value" value=""
-                                        oninput="evaluateEarthResistance(1, this.value)">
+                                <div class="flex gap-2">
+                                    <div class="input-container flex-1">
+                                        <span class="material-symbols-outlined input-icon">memory</span>
+                                        <input type="number" step="0.1" data-path="earthResistance.1.value" value=""
+                                            oninput="evaluateEarthResistance(1, this.value)" class="w-full">
+                                    </div>
+                                    <input type="text" placeholder="Ghi chú..." 
+                                        data-path="earthResistance.1.remarks" class="flex-1 text-sm rounded-lg border-slate-200">
                                 </div>
                             </div>
                             <div class="input-group-premium">
                                 <label>Vỏ tủ AC (Ω) <span id="er-eval-2" class="ml-2 text-xs font-bold"></span></label>
-                                <div class="input-container">
-                                    <span class="material-symbols-outlined input-icon">ev_station</span>
-                                    <input type="number" step="0.1" data-path="earthResistance.2.value" value=""
-                                        oninput="evaluateEarthResistance(2, this.value)">
+                                <div class="flex gap-2">
+                                    <div class="input-container flex-1">
+                                        <span class="material-symbols-outlined input-icon">ev_station</span>
+                                        <input type="number" step="0.1" data-path="earthResistance.2.value" value=""
+                                            oninput="evaluateEarthResistance(2, this.value)" class="w-full">
+                                    </div>
+                                    <input type="text" placeholder="Ghi chú..." 
+                                        data-path="earthResistance.2.remarks" class="flex-1 text-sm rounded-lg border-slate-200">
                                 </div>
                             </div>
                         </div>
